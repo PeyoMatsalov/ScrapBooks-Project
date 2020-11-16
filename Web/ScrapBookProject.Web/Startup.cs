@@ -16,6 +16,7 @@
     using ScrapBookProject.Data.Models;
     using ScrapBookProject.Data.Repositories;
     using ScrapBookProject.Data.Seeding;
+    using ScrapBookProject.Services.Data;
     using ScrapBookProject.Services.Mapping;
     using ScrapBookProject.Services.Messaging;
     using ScrapBookProject.Web.ViewModels;
@@ -61,6 +62,7 @@
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
+            services.AddTransient<IScrapBooksService, ScrapBooksService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

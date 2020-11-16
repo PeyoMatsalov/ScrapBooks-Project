@@ -19,6 +19,10 @@
 
         public int PagesCount { get; set; }
 
+        public bool IsPrivate { get; set; }
+
+        public string CoverUlr { get; set; }
+
         public virtual ICollection<Comment> Comments { get; set; }
 
         public int CreatorId { get; set; }

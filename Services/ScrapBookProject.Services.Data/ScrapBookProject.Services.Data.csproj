@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\ScrapBookProject.Data.Common\ScrapBookProject.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\ScrapBookProject.Data.Models\ScrapBookProject.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\ScrapBookProject.Web.ViewModels\ScrapBookProject.Web.ViewModels.csproj" />
     <ProjectReference Include="..\ScrapBookProject.Services.Mapping\ScrapBookProject.Services.Mapping.csproj" />
   </ItemGroup>
 
