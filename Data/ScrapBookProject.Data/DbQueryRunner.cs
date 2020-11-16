@@ -3,9 +3,8 @@
     using System;
     using System.Threading.Tasks;
 
-    using ScrapBookProject.Data.Common;
-
     using Microsoft.EntityFrameworkCore;
+    using ScrapBookProject.Data.Common;
 
     public class DbQueryRunner : IDbQueryRunner
     {

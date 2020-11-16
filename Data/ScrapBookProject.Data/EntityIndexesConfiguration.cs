@@ -2,9 +2,8 @@
 {
     using System.Linq;
 
-    using ScrapBookProject.Data.Common.Models;
-
     using Microsoft.EntityFrameworkCore;
+    using ScrapBookProject.Data.Common.Models;
 
     internal static class EntityIndexesConfiguration
     {

@@ -1,8 +1,8 @@
 ﻿namespace ScrapBookProject.Data.Configurations
 {
-    using ScrapBookProject.Data.Models;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using ScrapBookProject.Data.Models;
 
     public class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {

@@ -4,11 +4,10 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using ScrapBookProject.Common;
-    using ScrapBookProject.Data.Models;
-
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
+    using ScrapBookProject.Common;
+    using ScrapBookProject.Data.Models;
 
     internal class RolesSeeder : ISeeder
     {
