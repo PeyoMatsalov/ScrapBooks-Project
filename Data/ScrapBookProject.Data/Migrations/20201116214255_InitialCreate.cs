@@ -175,15 +175,14 @@ namespace ScrapBookProject.Data.Migrations
                     PagesCount = table.Column<int>(nullable: false),
                     IsPrivate = table.Column<bool>(nullable: false),
                     CoverUlr = table.Column<string>(nullable: true),
-                    CreatorId = table.Column<int>(nullable: false),
-                    CreatorId1 = table.Column<string>(nullable: true)
+                    CreatorId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ScrapBooks", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ScrapBooks_AspNetUsers_CreatorId1",
-                        column: x => x.CreatorId1,
+                        name: "FK_ScrapBooks_AspNetUsers_CreatorId",
+                        column: x => x.CreatorId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -201,15 +200,14 @@ namespace ScrapBookProject.Data.Migrations
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     Content = table.Column<string>(nullable: true),
                     ScrapBookId = table.Column<int>(nullable: false),
-                    OwnerId = table.Column<int>(nullable: false),
-                    OwnerId1 = table.Column<string>(nullable: true)
+                    OwnerId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Comments_AspNetUsers_OwnerId1",
-                        column: x => x.OwnerId1,
+                        name: "FK_Comments_AspNetUsers_OwnerId",
+                        column: x => x.OwnerId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -276,9 +274,9 @@ namespace ScrapBookProject.Data.Migrations
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_OwnerId1",
+                name: "IX_Comments_OwnerId",
                 table: "Comments",
-                column: "OwnerId1");
+                column: "OwnerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_ScrapBookId",
@@ -286,9 +284,9 @@ namespace ScrapBookProject.Data.Migrations
                 column: "ScrapBookId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ScrapBooks_CreatorId1",
+                name: "IX_ScrapBooks_CreatorId",
                 table: "ScrapBooks",
-                column: "CreatorId1");
+                column: "CreatorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ScrapBooks_IsDeleted",

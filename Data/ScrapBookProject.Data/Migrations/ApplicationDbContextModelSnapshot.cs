@@ -265,10 +265,7 @@ namespace ScrapBookProject.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("OwnerId1")
+                    b.Property<string>("OwnerId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("ScrapBookId")
@@ -278,7 +275,7 @@ namespace ScrapBookProject.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.HasIndex("OwnerId1");
+                    b.HasIndex("OwnerId");
 
                     b.HasIndex("ScrapBookId");
 
@@ -298,10 +295,7 @@ namespace ScrapBookProject.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatorId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CreatorId1")
+                    b.Property<string>("CreatorId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("DeletedOn")
@@ -327,7 +321,7 @@ namespace ScrapBookProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatorId1");
+                    b.HasIndex("CreatorId");
 
                     b.HasIndex("IsDeleted");
 
@@ -389,7 +383,7 @@ namespace ScrapBookProject.Data.Migrations
                 {
                     b.HasOne("ScrapBookProject.Data.Models.ApplicationUser", "Owner")
                         .WithMany()
-                        .HasForeignKey("OwnerId1");
+                        .HasForeignKey("OwnerId");
 
                     b.HasOne("ScrapBookProject.Data.Models.ScrapBook", "ScrapBook")
                         .WithMany("Comments")
@@ -402,7 +396,7 @@ namespace ScrapBookProject.Data.Migrations
                 {
                     b.HasOne("ScrapBookProject.Data.Models.ApplicationUser", "Creator")
                         .WithMany()
-                        .HasForeignKey("CreatorId1");
+                        .HasForeignKey("CreatorId");
                 });
 #pragma warning restore 612, 618
         }

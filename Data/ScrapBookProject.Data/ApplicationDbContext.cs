@@ -27,10 +27,6 @@
 
         public DbSet<Comment> Comments { get; set; }
 
-        public DbSet<ApplicationRole> ApplicationRoles { get; set; }
-
-        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

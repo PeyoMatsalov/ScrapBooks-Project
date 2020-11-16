@@ -10,7 +10,7 @@
 
         public virtual ScrapBook ScrapBook { get; set; }
 
-        public int OwnerId { get; set; }
+        public string OwnerId { get; set; }
 
         public virtual ApplicationUser Owner { get; set; }
     }

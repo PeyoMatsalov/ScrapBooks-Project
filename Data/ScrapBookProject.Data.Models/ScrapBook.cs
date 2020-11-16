@@ -25,8 +25,8 @@
 
         public virtual ICollection<Comment> Comments { get; set; }
 
-        public int CreatorId { get; set; }
+        public string CreatorId { get; set; }
 
-        public ApplicationUser Creator { get; set; }
+        public virtual ApplicationUser Creator { get; set; }
     }
 }

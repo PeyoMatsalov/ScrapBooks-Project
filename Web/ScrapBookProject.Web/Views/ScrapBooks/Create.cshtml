@@ -2,7 +2,7 @@
 @{
     this.ViewData["Title"] = "Create a ScrapBook";
 }
-<h1>Create a ScrapBook!</h1>
+<h1 class="text-center">Create a ScrapBook!</h1>
 
 <form method="post" class="col-md-6 offset-md-3">
     <div asp-validation-summary="All" class="text-danger"></div>
@@ -21,5 +21,7 @@
         <input asp-for="CoverUrl" class="form-control" />
         <span asp-validation-for="CoverUrl" class="text-danger"></span>
     </div>
-    <input type="submit" class="btn btn-primary" />
+    <div class="offset-5">
+        <input type="submit" class="btn btn-primary" />
+    </div>
 </form>
