@@ -1,9 +1,13 @@
 ﻿namespace ScrapBookProject.Web.Controllers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Mvc;
+    using ScrapBookProject.Data.Models;
     using ScrapBookProject.Services.Data;
     using ScrapBookProject.Web.ViewModels.ScrapBooks;
-    using System.Threading.Tasks;
 
     public class ScrapBooksController : Controller
     {
@@ -16,7 +20,8 @@
 
         public IActionResult ScrapBooks()
         {
-            return this.View();
+            var scrapBooks = this.scrapBooksService.GetAllScrapBooks();
+            return this.View(scrapBooks);
         }
 
         public IActionResult Create()
@@ -34,7 +39,7 @@
 
             await this.scrapBooksService.CreateAsync(input);
 
-            return this.Redirect("/");
+            return this.Redirect("/ScrapBooks/ScrapBooks");
         }
     }
 }

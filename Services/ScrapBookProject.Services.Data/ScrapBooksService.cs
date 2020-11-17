@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
     using ScrapBookProject.Data.Common.Repositories;
@@ -28,6 +29,26 @@
 
             await this.scrapBooksRepository.AddAsync(scrapBook);
             await this.scrapBooksRepository.SaveChangesAsync();
+        }
+
+        public ICollection<ScrapBookViewModel> GetAllScrapBooks()
+        {
+            var scrapBooksDb = this.scrapBooksRepository.All().ToList();
+            var resultScrapBooks = new List<ScrapBookViewModel>();
+
+            foreach (var scrapBookDbModel in scrapBooksDb)
+            {
+                var scrapBook = new ScrapBookViewModel
+                {
+                    Name = scrapBookDbModel.Name,
+                    Description = scrapBookDbModel.Description,
+                    CoverUrl = scrapBookDbModel.CoverUlr,
+                };
+
+                resultScrapBooks.Add(scrapBook);
+            }
+
+            return resultScrapBooks;
         }
     }
 }

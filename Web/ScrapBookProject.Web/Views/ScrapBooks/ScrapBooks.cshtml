@@ -1,8 +1,33 @@
-﻿<h1 class="text-center">Here are your ScrapBooks!</h1>
+﻿@model ICollection<ScrapBookProject.Web.ViewModels.ScrapBooks.ScrapBookViewModel>
+
+<h1 class="text-center">Here are your ScrapBooks!</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Cover</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><img src="@item.CoverUrl" alt="@item.CoverUrl" width="120" height="185"></td>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
 
 <div class="container">
-    <div class="text-center">
-        <a class="border border-primary rounded-pill rounded-lg bg-primary text-white" asp-controller="ScrapBooks" asp-action="Create">Create a ScrapBook!</a>
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+            <form method="get" asp-controller="ScrapBooks" asp-action="Create">
+                <button class="btn btn-outline-primary btn-pill">Create a ScrapBook!</button>
+            </form>
+        </div>
     </div>
 </div>
-
