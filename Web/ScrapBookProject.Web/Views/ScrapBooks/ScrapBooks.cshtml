@@ -1,8 +1,7 @@
 ﻿@model ICollection<ScrapBookProject.Web.ViewModels.ScrapBooks.ScrapBookViewModel>
-
 <h1 class="text-center">Here are your ScrapBooks!</h1>
 
-<table class="table">
+<table class="table" id="myTable">
     <thead>
         <tr>
             <th scope="col">Cover</th>
@@ -13,11 +12,12 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td><img src="@item.CoverUrl" alt="@item.CoverUrl" width="120" height="185"></td>
-                <td>@item.Name</td>
-                <td>@item.Description</td>
-            </tr>
+        <tr class="book" style="cursor: pointer;">
+            <td><img src="@item.CoverUrl" alt="@item.CoverUrl" width="120" height="185"></td>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td><input type="hidden" id="@item.Id" name="custId" value="3487"></td>
+        </tr>         
         }
     </tbody>
 </table>
@@ -31,3 +31,13 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script>
+        $(".book").hover(function () {
+            $(this).css("background-color", "lightgrey");
+        }, function () {
+            $(this).css("background-color", "white");
+        });
+    </script>
+}

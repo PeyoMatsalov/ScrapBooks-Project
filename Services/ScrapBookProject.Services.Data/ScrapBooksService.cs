@@ -47,6 +47,7 @@
             {
                 var scrapBook = new ScrapBookViewModel
                 {
+                    Id = scrapBookDbModel.Id,
                     Name = scrapBookDbModel.Name,
                     Description = scrapBookDbModel.Description,
                     CoverUrl = scrapBookDbModel.CoverUlr,

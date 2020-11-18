@@ -1,10 +1,11 @@
-﻿using ScrapBookProject.Data.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ScrapBookProject.Data.Models
+﻿namespace ScrapBookProject.Data.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
+    using ScrapBookProject.Data.Common.Models;
+
     public class Tag : BaseDeletableModel<int>
     {
         public string Name { get; set; }

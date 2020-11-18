@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace ScrapBookProject.Data.Migrations
+﻿namespace ScrapBookProject.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddTagEntity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +19,7 @@ namespace ScrapBookProject.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    ScrapBookId = table.Column<int>(nullable: false)
+                    ScrapBookId = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {

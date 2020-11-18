@@ -50,6 +50,11 @@
             var sw = Stopwatch.StartNew();
 
             // Add code to test
+            int? a = 3;
+
+            int b = a ?? 1;
+            Console.WriteLine(b);
+
             Console.WriteLine(sw.Elapsed);
             return await Task.FromResult(0);
         }

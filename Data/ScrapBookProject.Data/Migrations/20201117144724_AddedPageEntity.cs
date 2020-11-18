@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace ScrapBookProject.Data.Migrations
+﻿namespace ScrapBookProject.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddedPageEntity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,7 +21,7 @@ namespace ScrapBookProject.Data.Migrations
                     PageNumber = table.Column<int>(nullable: false),
                     Content = table.Column<string>(nullable: true),
                     ImageUrl = table.Column<string>(nullable: true),
-                    ScrapBookId = table.Column<int>(nullable: false)
+                    ScrapBookId = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
