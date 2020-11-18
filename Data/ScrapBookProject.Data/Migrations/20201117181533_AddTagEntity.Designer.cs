@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ScrapBookProject.Data;
 
 namespace ScrapBookProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201117181533_AddTagEntity")]
+    partial class AddTagEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -478,7 +480,7 @@ namespace ScrapBookProject.Data.Migrations
             modelBuilder.Entity("ScrapBookProject.Data.Models.ScrapBook", b =>
                 {
                     b.HasOne("ScrapBookProject.Data.Models.ApplicationUser", "Creator")
-                        .WithMany("ScrapBooks")
+                        .WithMany()
                         .HasForeignKey("CreatorId");
                 });
 

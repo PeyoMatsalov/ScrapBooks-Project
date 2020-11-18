@@ -1,18 +1,21 @@
 ﻿namespace ScrapBookProject.Web.Controllers
 {
+    using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using ScrapBookProject.Data.Models;
     using ScrapBookProject.Web.ViewModels;
 
     public class HomeController : BaseController
     {
-        public IActionResult Index()
+        public HomeController()
         {
-            return this.View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Index()
         {
             return this.View();
         }

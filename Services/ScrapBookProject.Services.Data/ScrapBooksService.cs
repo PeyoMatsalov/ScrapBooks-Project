@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+
     using ScrapBookProject.Data.Common.Repositories;
     using ScrapBookProject.Data.Models;
     using ScrapBookProject.Web.ViewModels.ScrapBooks;
@@ -12,20 +13,26 @@
     public class ScrapBooksService : IScrapBooksService
     {
         private readonly IDeletableEntityRepository<ScrapBook> scrapBooksRepository;
+        private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
 
-        public ScrapBooksService(IDeletableEntityRepository<ScrapBook> scrapBooksRepository)
+        public ScrapBooksService(IDeletableEntityRepository<ScrapBook> scrapBooksRepository, IDeletableEntityRepository<ApplicationUser> usersRepository)
         {
             this.scrapBooksRepository = scrapBooksRepository;
+            this.usersRepository = usersRepository;
         }
 
-        public async Task CreateAsync(CreateScrapBookInputModel input)
+        public async Task CreateAsync(CreateScrapBookInputModel input, string userId)
         {
+            ApplicationUser user = this.usersRepository.All().FirstOrDefault(x => x.Id == userId);
+
             var scrapBook = new ScrapBook
             {
                 Name = input.Name,
                 Description = input.Description,
                 CoverUlr = input.CoverUrl,
             };
+
+            user.ScrapBooks.Add(scrapBook);
 
             await this.scrapBooksRepository.AddAsync(scrapBook);
             await this.scrapBooksRepository.SaveChangesAsync();
@@ -49,6 +56,19 @@
             }
 
             return resultScrapBooks;
+        }
+
+        public ScrapBookViewModel GetScrapBookById()
+        {
+            ScrapBookViewModel viewModel = this.scrapBooksRepository.All().Select(x => new ScrapBookViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description,
+                CoverUrl = x.CoverUlr,
+            }).FirstOrDefault();
+
+            return viewModel;
         }
     }
 }

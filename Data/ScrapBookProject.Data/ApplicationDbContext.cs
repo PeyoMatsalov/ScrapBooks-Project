@@ -26,7 +26,10 @@
         public DbSet<ScrapBook> ScrapBooks { get; set; }
 
         public DbSet<Comment> Comments { get; set; }
+
         public DbSet<Page> Pages { get; set; }
+
+        public DbSet<Tag> Tags { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

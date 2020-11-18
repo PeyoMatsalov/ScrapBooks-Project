@@ -8,8 +8,10 @@
 
     public interface IScrapBooksService
     {
-        Task CreateAsync(CreateScrapBookInputModel input);
+        Task CreateAsync(CreateScrapBookInputModel input, string creatorId);
 
         ICollection<ScrapBookViewModel> GetAllScrapBooks();
+
+        ScrapBookViewModel GetScrapBookById();
     }
 }

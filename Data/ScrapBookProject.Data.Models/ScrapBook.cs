@@ -12,6 +12,7 @@
         {
             this.Comments = new HashSet<Comment>();
             this.Pages = new HashSet<Page>();
+            this.Tags = new HashSet<Tag>();
         }
 
         public string Name { get; set; }
@@ -27,6 +28,8 @@
         public virtual ICollection<Comment> Comments { get; set; }
 
         public virtual ICollection<Page> Pages{ get; set; }
+
+        public virtual ICollection<Tag> Tags { get; set; }
 
         public string CreatorId { get; set; }
 
