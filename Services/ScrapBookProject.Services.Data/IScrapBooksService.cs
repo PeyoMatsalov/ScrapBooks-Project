@@ -10,7 +10,7 @@
     {
         Task CreateAsync(CreateScrapBookInputModel input, string creatorId);
 
-        ICollection<ScrapBookViewModel> GetAllScrapBooks();
+        ICollection<ScrapBookViewModel> GetAllScrapBooksForUser(string userId);
 
         ScrapBookViewModel GetScrapBookById();
     }

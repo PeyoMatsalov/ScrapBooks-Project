@@ -25,7 +25,9 @@
 
         public IActionResult ScrapBooks()
         {
-            var scrapBooks = this.scrapBooksService.GetAllScrapBooks();
+            var userId = this.userManager.GetUserId(this.User);
+
+            var scrapBooks = this.scrapBooksService.GetAllScrapBooksForUser(userId);
             return this.View(scrapBooks);
         }
 
