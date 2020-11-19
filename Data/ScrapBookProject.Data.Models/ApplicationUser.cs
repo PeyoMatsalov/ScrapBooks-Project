@@ -18,6 +18,8 @@ namespace ScrapBookProject.Data.Models
             this.ScrapBooks = new HashSet<ScrapBook>();
         }
 
+        public DateTime DateOfBirth { get; set; }
+
         // Audit info
         public DateTime CreatedOn { get; set; }
 
