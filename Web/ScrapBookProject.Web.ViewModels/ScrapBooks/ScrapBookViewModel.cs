@@ -1,9 +1,5 @@
 ﻿namespace ScrapBookProject.Web.ViewModels.ScrapBooks
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
     public class ScrapBookViewModel
     {
         public int Id { get; set; }

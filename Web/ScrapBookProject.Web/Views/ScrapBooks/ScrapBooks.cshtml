@@ -1,4 +1,7 @@
 ﻿@model ICollection<ScrapBookProject.Web.ViewModels.ScrapBooks.ScrapBookViewModel>
+@{
+    this.ViewData["Title"] = "Your ScrapBooks";
+}
 <h1 class="text-center">Here are your ScrapBooks!</h1>
 
 <table class="table" id="myTable">
@@ -10,14 +13,19 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var book in Model)
         {
-        <tr class="book" style="cursor: pointer;">
-            <td><img src="@item.CoverUrl" alt="@item.CoverUrl" width="120" height="185"></td>
-            <td>@item.Name</td>
-            <td>@item.Description</td>
-            <td><input type="hidden" id="@item.Id" name="custId" value="3487"></td>
-        </tr>         
+            <tr class="tr">
+                <td><img src="@book.CoverUrl" alt="@book.CoverUrl" width="120" height="185"></td>
+                <td>@book.Name</td>
+                <td>@book.Description</td>
+                <td>
+                    <a href="/ScrapBooks/Pages/@book.Id"> View </a> |
+                    <a href="/Movies/Details/4"> Details </a> |
+                    <a href="/Movies/Delete/4"> Delete </a>
+                </td>
+            </tr>
+
         }
     </tbody>
 </table>
@@ -34,7 +42,7 @@
 
 @section Scripts{
     <script>
-        $(".book").hover(function () {
+        $(".tr").hover(function () {
             $(this).css("background-color", "lightgrey");
         }, function () {
             $(this).css("background-color", "white");

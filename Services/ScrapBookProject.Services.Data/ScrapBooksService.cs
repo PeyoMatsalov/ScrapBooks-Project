@@ -8,6 +8,7 @@
 
     using ScrapBookProject.Data.Common.Repositories;
     using ScrapBookProject.Data.Models;
+    using ScrapBookProject.Web.ViewModels.Pages;
     using ScrapBookProject.Web.ViewModels.ScrapBooks;
 
     public class ScrapBooksService : IScrapBooksService
@@ -59,15 +60,17 @@
             return resultScrapBooks;
         }
 
-        public ScrapBookViewModel GetScrapBookById()
+        public ScrapBookPagesViewModel GetScrapBookById(int scrapBookId)
         {
-            ScrapBookViewModel viewModel = this.scrapBooksRepository.All().Select(x => new ScrapBookViewModel
+            var scrapBookDbModel = this.scrapBooksRepository.All().FirstOrDefault(x => x.Id == scrapBookId);
+            ScrapBookPagesViewModel viewModel = new ScrapBookPagesViewModel
             {
-                Id = x.Id,
-                Name = x.Name,
-                Description = x.Description,
-                CoverUrl = x.CoverUlr,
-            }).FirstOrDefault();
+                Id = scrapBookDbModel.Id,
+                Name = scrapBookDbModel.Name,
+                Description = scrapBookDbModel.Description,
+                Pages = scrapBookDbModel.Pages,
+                CoverUrl = scrapBookDbModel.CoverUlr,
+            };
 
             return viewModel;
         }

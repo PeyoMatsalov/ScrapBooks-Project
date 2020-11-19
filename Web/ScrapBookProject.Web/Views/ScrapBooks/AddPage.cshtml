@@ -1,0 +1,17 @@
+﻿@model ScrapBookProject.Web.ViewModels.Pages.CreatePageInputModel
+@{
+    this.ViewData["Title"] = "Add a page";
+}
+<h1 class="text-center">Write something for your page!</h1>
+
+<form method="post" class="col-md-6 offset-md-3">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Content"></label>
+        <textarea asp-for="Content" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+    <div class="offset-5">
+        <button type="submit" class="btn btn-outline-primary btn-pill">Done!</button>
+    </div>
+</form>

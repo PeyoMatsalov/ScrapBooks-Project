@@ -16,6 +16,7 @@
     using ScrapBookProject.Data.Models;
     using ScrapBookProject.Data.Repositories;
     using ScrapBookProject.Data.Seeding;
+    using ScrapBookProject.Services.Data;
     using ScrapBookProject.Services.Messaging;
 
     public static class Program
@@ -50,10 +51,6 @@
             var sw = Stopwatch.StartNew();
 
             // Add code to test
-            int? a = 3;
-
-            int b = a ?? 1;
-            Console.WriteLine(b);
 
             Console.WriteLine(sw.Elapsed);
             return await Task.FromResult(0);

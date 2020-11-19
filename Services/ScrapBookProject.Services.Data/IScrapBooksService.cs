@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
 
     using ScrapBookProject.Data.Models;
+    using ScrapBookProject.Web.ViewModels.Pages;
     using ScrapBookProject.Web.ViewModels.ScrapBooks;
 
     public interface IScrapBooksService
@@ -12,6 +13,6 @@
 
         ICollection<ScrapBookViewModel> GetAllScrapBooksForUser(string userId);
 
-        ScrapBookViewModel GetScrapBookById();
+        ScrapBookPagesViewModel GetScrapBookById(int scrapBookId);
     }
 }

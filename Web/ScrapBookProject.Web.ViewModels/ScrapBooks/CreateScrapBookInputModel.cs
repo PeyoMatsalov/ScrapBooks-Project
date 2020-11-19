@@ -14,7 +14,5 @@
 
         [Display(Name = "Cover Image")]
         public string CoverUrl { get; set; }
-
-        public string CreatorId { get; set; }
     }
 }
