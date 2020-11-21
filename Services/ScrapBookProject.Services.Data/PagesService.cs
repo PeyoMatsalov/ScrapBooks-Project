@@ -27,7 +27,7 @@
 
             int pageNumber = 1;
 
-            if (pages.Last().PageNumber != 0)
+            if (pages.Count > 0 && pages.Last().PageNumber != 0)
             {
                 pageNumber = pages.Last().PageNumber;
                 pageNumber++;
@@ -37,9 +37,10 @@
             {
                 Content = input.Content,
                 PageNumber = pageNumber,
-                ScrapBookId = bookId,
             };
 
+            this.scrapBooksRepository.All().FirstOrDefault(x => x.Id == bookId).Pages.Add(page);
+            await this.scrapBooksRepository.SaveChangesAsync();
             await this.pagesRepository.AddAsync(page);
             await this.pagesRepository.SaveChangesAsync();
         }
@@ -52,6 +53,7 @@
             {
                 PageViewModel page = new PageViewModel
                 {
+                    BookId = bookId,
                     Content = book.Content,
                     Number = book.PageNumber,
                     ImageUrl = book.ImageUrl,

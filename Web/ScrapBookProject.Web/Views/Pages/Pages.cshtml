@@ -1,0 +1,54 @@
+﻿@model ICollection<ScrapBookProject.Web.ViewModels.Pages.PageViewModel>
+
+@{
+    int bookId = Model.First().BookId;
+}
+
+<h1 class="text-center">Test</h1>
+
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col border border-info">
+            <div class="container">
+                @if (Model.Count == 1)
+                {
+                    <h3>It looks like your scrap book is empty. Click the button to create your first page on it.</h3>
+                    <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-auto">
+                        <form method="get" asp-controller="Pages" asp-action="AddPage">
+                            <input asp-for="@bookId" type="hidden" />
+                            <button class="btn btn-outline-primary btn-pill">Click</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+                }
+                else
+                {
+                    @* Top of the page *@
+                    <div class="row align-items-start">
+                        <div class="col">
+                            <img src="https://images.ctfassets.net/hrltx12pl8hq/6t8IYKOGf5nTMziWSpfLhx/9b2930a451d8236630da76597d042fca/shutterstock-elements-hero.jpg" class="img-fluid img-thumbnail">
+                        </div>
+                    </div>
+
+                    @* Middle of the page *@
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <p class="text-center font-weight-bold">Some text</p>
+                        </div>
+                    </div>
+
+                    @* Bottom of the page *@
+                    <div class="row align-items-end" style="margin-top: 25%">
+                        <div class="col">
+                            <hr>
+                            <p class="text-center font-weight-bold">Page 1</p>
+                        </div>
+                    </div>
+                }
+            </div>           
+        </div>
+    </div>
+</div>

@@ -31,8 +31,17 @@
                 Name = input.Name,
                 Description = input.Description,
                 CoverUlr = input.CoverUrl,
+                Visibility = input.Vis,
             };
 
+            var page = new Page
+            {
+                PageNumber = 0,
+                Content = "Page 0",
+                ImageUrl = string.Empty,
+            };
+
+            scrapBook.Pages.Add(page);
             user.ScrapBooks.Add(scrapBook);
 
             await this.scrapBooksRepository.AddAsync(scrapBook);
@@ -60,15 +69,14 @@
             return resultScrapBooks;
         }
 
-        public ScrapBookPagesViewModel GetScrapBookById(int scrapBookId)
+        public ScrapBookViewModel GetScrapBookById(int scrapBookId)
         {
             var scrapBookDbModel = this.scrapBooksRepository.All().FirstOrDefault(x => x.Id == scrapBookId);
-            ScrapBookPagesViewModel viewModel = new ScrapBookPagesViewModel
+            var viewModel = new ScrapBookViewModel
             {
                 Id = scrapBookDbModel.Id,
                 Name = scrapBookDbModel.Name,
                 Description = scrapBookDbModel.Description,
-                Pages = scrapBookDbModel.Pages,
                 CoverUrl = scrapBookDbModel.CoverUlr,
             };
 

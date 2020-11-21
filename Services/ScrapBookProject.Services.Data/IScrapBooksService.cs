@@ -13,6 +13,6 @@
 
         ICollection<ScrapBookViewModel> GetAllScrapBooksForUser(string userId);
 
-        ScrapBookPagesViewModel GetScrapBookById(int scrapBookId);
+        ScrapBookViewModel GetScrapBookById(int scrapBookId);
     }
 }

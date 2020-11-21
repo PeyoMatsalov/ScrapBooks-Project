@@ -4,6 +4,7 @@
 }
 <h1 class="text-center">Create a ScrapBook!</h1>
 
+
 <form method="post" class="col-md-6 offset-md-3">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
@@ -20,6 +21,16 @@
         <label asp-for="CoverUrl"></label>
         <input asp-for="CoverUrl" class="form-control" />
         <span asp-validation-for="CoverUrl" class="text-danger"></span>
+    </div>
+    <div>
+        <h6>Would you like your scrapbook to be visible to everyone or only you?</h6>
+    </div>
+    
+    <div>
+        <input type="radio" asp-for="Vis" value="Private" />Only me<br />
+    </div>
+    <div>
+        <input type="radio" asp-for="Vis" value="Public" />Everyone<br />
     </div>
     <div class="offset-5">
         <button type="submit" class="btn btn-outline-primary btn-pill">Done!</button>

@@ -19,9 +19,7 @@
 
         public string Description { get; set; }
 
-        public int PagesCount { get; set; }
-
-        public bool IsPrivate { get; set; }
+        public string Visibility { get; set; }
 
         public string CoverUlr { get; set; }
 

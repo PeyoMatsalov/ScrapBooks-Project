@@ -1,5 +1,7 @@
 ﻿namespace ScrapBookProject.Web.ViewModels.ScrapBooks
 {
+    using System.Collections;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     public class CreateScrapBookInputModel
@@ -14,5 +16,7 @@
 
         [Display(Name = "Cover Image")]
         public string CoverUrl { get; set; }
+
+        public string Vis { get; set; }
     }
 }

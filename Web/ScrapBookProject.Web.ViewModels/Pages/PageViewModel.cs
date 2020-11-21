@@ -2,6 +2,8 @@
 {
     public class PageViewModel
     {
+        public int BookId { get; set; }
+
         public int Number { get; set; }
 
         public string Content { get; set; }

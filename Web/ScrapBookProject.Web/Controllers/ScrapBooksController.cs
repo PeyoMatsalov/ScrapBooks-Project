@@ -7,6 +7,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using ScrapBookProject.Data.Common;
     using ScrapBookProject.Data.Models;
     using ScrapBookProject.Services.Data;
     using ScrapBookProject.Web.ViewModels.Pages;
@@ -17,13 +18,13 @@
     {
         private readonly IScrapBooksService scrapBooksService;
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly IPagesService pagesService;
 
-        public ScrapBooksController(IScrapBooksService scrapBooksService, UserManager<ApplicationUser> userManager, IPagesService pagesService)
+        public ScrapBooksController(
+            UserManager<ApplicationUser> userManager,
+            IScrapBooksService scrapBooksService)
         {
             this.scrapBooksService = scrapBooksService;
             this.userManager = userManager;
-            this.pagesService = pagesService;
         }
 
         public IActionResult ScrapBooks()
@@ -52,27 +53,6 @@
             await this.scrapBooksService.CreateAsync(input, userId);
 
             return this.Redirect("/ScrapBooks/ScrapBooks");
-        }
-
-        public IActionResult Pages(int id)
-        {
-            var pages = this.pagesService.GetPagesByBookId(id);
-
-            return this.View(pages);
-        }
-
-        public IActionResult AddPage(int id)
-        {
-            var book = this.scrapBooksService.GetScrapBookById(id);
-            return this.View(book);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> AddPage(int id, CreatePageInputModel input)
-        {
-            await this.pagesService.CreateAsync(input, id);
-            var book = this.scrapBooksService.GetScrapBookById(id);
-            return this.Json("test");
         }
     }
 }
