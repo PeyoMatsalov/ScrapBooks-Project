@@ -15,11 +15,13 @@
     {
         private readonly IDeletableEntityRepository<ScrapBook> scrapBooksRepository;
         private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
+        private readonly IDeletableEntityRepository<Page> pagesRepository;
 
-        public ScrapBooksService(IDeletableEntityRepository<ScrapBook> scrapBooksRepository, IDeletableEntityRepository<ApplicationUser> usersRepository)
+        public ScrapBooksService(IDeletableEntityRepository<ScrapBook> scrapBooksRepository, IDeletableEntityRepository<ApplicationUser> usersRepository, IDeletableEntityRepository<Page> pagesRepository)
         {
             this.scrapBooksRepository = scrapBooksRepository;
             this.usersRepository = usersRepository;
+            this.pagesRepository = pagesRepository;
         }
 
         public async Task CreateAsync(CreateScrapBookInputModel input, string userId)
@@ -72,12 +74,30 @@
         public ScrapBookViewModel GetScrapBookById(int scrapBookId)
         {
             var scrapBookDbModel = this.scrapBooksRepository.All().FirstOrDefault(x => x.Id == scrapBookId);
+
             var viewModel = new ScrapBookViewModel
             {
                 Id = scrapBookDbModel.Id,
                 Name = scrapBookDbModel.Name,
                 Description = scrapBookDbModel.Description,
                 CoverUrl = scrapBookDbModel.CoverUlr,
+            };
+
+            return viewModel;
+        }
+
+        public ScrapBookPagesViewModel GetScrapBookWithPagesById(int scrapBookId)
+        {
+            var scrapBookDbModel = this.scrapBooksRepository.All().FirstOrDefault(x => x.Id == scrapBookId);
+            var pagesDbModel = this.pagesRepository.All().Where(x => x.ScrapBookId == scrapBookId).ToList();
+
+            var viewModel = new ScrapBookPagesViewModel
+            {
+                Id = scrapBookDbModel.Id,
+                Name = scrapBookDbModel.Name,
+                Description = scrapBookDbModel.Description,
+                CoverUrl = scrapBookDbModel.CoverUlr,
+                Pages = pagesDbModel,
             };
 
             return viewModel;

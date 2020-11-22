@@ -6,17 +6,19 @@
 
     public class CreateScrapBookInputModel
     {
-        [Required]
-        [MinLength(1)]
+        [Required(ErrorMessage = "The name is required.")]
+        [MinLength(1, ErrorMessage = "The name must be between 1 and 30 characters.")]
+        [MaxLength(30, ErrorMessage = "The name must be between 1 and 30 characters.")]
         public string Name { get; set; }
 
-        [Required]
-        [MinLength(10)]
+        [Required(ErrorMessage = "The description is required.")]
+        [MinLength(10, ErrorMessage = "The description must be between 10 and 200 characters.")]
+        [MaxLength(200, ErrorMessage = "The description must be between 10 and 200 characters.")]
         public string Description { get; set; }
 
-        [Display(Name = "Custom cover image")]
         public string CoverUrl { get; set; }
 
+        [Required(ErrorMessage = "Please choose who can see your scrapbook.")]
         public string Vis { get; set; }
     }
 }

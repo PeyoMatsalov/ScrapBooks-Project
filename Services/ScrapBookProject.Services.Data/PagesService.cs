@@ -21,9 +21,9 @@
             this.pagesRepository = pagesRepository;
         }
 
-        public async Task CreateAsync(CreatePageInputModel input, int bookId)
+        public async Task CreateAsync(CreatePageInputModel input)
         {
-            var pages = this.pagesRepository.All().Where(x => x.ScrapBookId == bookId).ToList();
+            var pages = this.pagesRepository.All().Where(x => x.ScrapBookId == input.ScrapBookId).ToList();
 
             int pageNumber = 1;
 
@@ -39,7 +39,7 @@
                 PageNumber = pageNumber,
             };
 
-            this.scrapBooksRepository.All().FirstOrDefault(x => x.Id == bookId).Pages.Add(page);
+            this.scrapBooksRepository.All().FirstOrDefault(x => x.Id == input.ScrapBookId).Pages.Add(page);
             await this.scrapBooksRepository.SaveChangesAsync();
             await this.pagesRepository.AddAsync(page);
             await this.pagesRepository.SaveChangesAsync();

@@ -14,28 +14,37 @@
     public class PagesController : BaseController
     {
         private readonly IPagesService pagesService;
+        private readonly IScrapBooksService scrapBooksService;
 
-        public PagesController(IPagesService pagesService)
+        public PagesController(IPagesService pagesService, IScrapBooksService scrapBooksService)
         {
             this.pagesService = pagesService;
+            this.scrapBooksService = scrapBooksService;
         }
 
         public IActionResult Pages(int id)
         {
-            var pages = this.pagesService.GetPagesByBookId(id);
+            //var pages = this.pagesService.GetPagesByBookId(id);
+            var scrapBook = this.scrapBooksService.GetScrapBookWithPagesById(id);
+            var viewModel = new ScrapBookPagesViewModel()
+            {
+                Name = scrapBook.Name,
+                Id = scrapBook.Id,
+                Pages = scrapBook.Pages,
+            };
 
-            return this.View(pages);
+            return this.View(viewModel);
         }
 
-        public IActionResult AddPage(int id)
+        public IActionResult AddPage()
         {
-            return this.View(id);
+            return this.View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddPage(int id, CreatePageInputModel input)
+        public async Task<IActionResult> AddPage(CreatePageInputModel input)
         {
-            await this.pagesService.CreateAsync(input, id);
+            await this.pagesService.CreateAsync(input);
             return this.Redirect("/Pages/Pages");
         }
     }

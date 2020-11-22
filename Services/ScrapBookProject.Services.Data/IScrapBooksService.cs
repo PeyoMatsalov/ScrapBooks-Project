@@ -14,5 +14,7 @@
         ICollection<ScrapBookViewModel> GetAllScrapBooksForUser(string userId);
 
         ScrapBookViewModel GetScrapBookById(int scrapBookId);
+
+        ScrapBookPagesViewModel GetScrapBookWithPagesById(int scrapBookId);
     }
 }

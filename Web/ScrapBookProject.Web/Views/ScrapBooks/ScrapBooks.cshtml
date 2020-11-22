@@ -22,7 +22,7 @@
                          src="@book.CoverUrl" />
                 </div>
                 <div class="rowButtons">
-                    <a class="btn btn-light" href="/Pages/Pages/@book.Id"> View </a> |
+                    <a class="btn btn-light" asp-controller="Pages" asp-action="Pages" asp-route-Id="@book.Id"> View </a> |
                     <a class="btn btn-info" href="/Movies/Details/4"> Details </a> |
                     <a class="btn btn-danger" href="/Movies/Delete/4"> Delete </a>
                 </div>

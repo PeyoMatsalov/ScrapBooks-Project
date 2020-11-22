@@ -1,25 +1,19 @@
-﻿@model ICollection<ScrapBookProject.Web.ViewModels.Pages.PageViewModel>
+﻿@model ScrapBookProject.Web.ViewModels.Pages.ScrapBookPagesViewModel
 
-@{
-    int bookId = Model.First().BookId;
-}
 
-<h1 class="text-center">Test</h1>
+<h1 class="text-center">Pages count: @Model.Pages.Count</h1>
 
 <div class="container">
     <div class="row align-items-start">
-        <div class="col border border-info">
+        <div class="col">
             <div class="container">
-                @if (Model.Count == 1)
-                {
+                @if (Model.Pages.Count == 1)
+                { 
                     <h3>It looks like your scrap book is empty. Click the button to create your first page on it.</h3>
                     <div class="container">
                 <div class="row justify-content-md-center">
                     <div class="col-md-auto">
-                        <form method="get" asp-controller="Pages" asp-action="AddPage">
-                            <input asp-for="@bookId" type="hidden" />
-                            <button class="btn btn-outline-primary btn-pill">Click</button>
-                        </form>
+                            <a class="btn btn-outline-primary" asp-controller="Pages" asp-action="AddPage"> Click to add a page </a>
                     </div>
                 </div>
             </div>

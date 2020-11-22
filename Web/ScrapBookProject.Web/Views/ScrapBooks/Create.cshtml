@@ -1,19 +1,18 @@
 ﻿@model ScrapBookProject.Web.ViewModels.ScrapBooks.CreateScrapBookInputModel
 @{
     this.ViewData["Title"] = "Create a ScrapBook";
-    var imgTemplate = "";
 }
 <h1 class="text-center">Create a ScrapBook!</h1>
 
 
 <form method="post" class="col-md-6 offset-md-3">
     <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="align-content-md-center justify-content-md-center">
-        <img src="@imgTemplate" alt="Alternate Text" width="350" height="560" />
+    <div class="align-content-md-center justify-content-md-center offset-2">
+        <img src="" alt="Alternate Text" width="350" height="560" />
     </div>
     <hr>
     <div>
-        <h6>Please choose a cover for your book. You could also use your own cover if you provide a link in the box bellow.</h6>
+        <h6>Please choose a cover for your book. You could also use your own cover if you provide a link by clicking on Custom.</h6>
     </div>
     <div>
         <input class="CoverRadioButtons" id="CoverBlue" type="radio" asp-for="CoverUrl" value="/img/BookCoverBlue.jpg" />Blue<br />
@@ -30,9 +29,11 @@
     <div>
         <input class="CoverRadioButtons" id="CoverRed" type="radio" asp-for="CoverUrl" value="/img/BookCoverRed.jpg" />Red<br />
     </div>
+    <div>
+        <input id="CustomImgRadio" type="radio" asp-for="CoverUrl" value="" />Custom<br />
+    </div>
     <div class="form-group">
-        <label asp-for="CoverUrl"></label>
-        <input asp-for="CoverUrl" class="form-control CoverImg" placeholder="Leave blank to use default images" />
+        <input asp-for="CoverUrl" class="form-control CustomImg" placeholder="Enter your custom URL here."/>
         <span asp-validation-for="CoverUrl" class="text-danger"></span>
     </div>
     <div class="form-group">
@@ -55,6 +56,7 @@
     <div>
         <input type="radio" asp-for="Vis" value="Public" />Everyone<br />
     </div>
+    <span asp-validation-for="Vis" class="text-danger"></span>
     <div class="offset-5">
         <button type="submit" class="btn btn-outline-primary btn-pill">Done!</button>
     </div>
@@ -64,30 +66,40 @@
     <script>
         $(document).ready(function () {
             $("img").hide();
+            $(".CustomImg").hide();
             $("#CoverBlue").click(function () {
                 $("img").slideDown();
                 $("img").attr("src", "/img/BookCoverBlue.jpg");
+                $(".CustomImg").val("");
             });
             $("#CoverRed").click(function () {
                 $("img").slideDown();
                 $("img").attr("src", "/img/BookCoverRed.jpg");
+                $(".CustomImg").val("");
             });
             $("#CoverGreen").click(function () {
                 $("img").slideDown();
                 $("img").attr("src", "/img/BookCoverGreen.jpg");
+                $(".CustomImg").val("");
             });
             $("#CoverPurple").click(function () {
                 $("img").slideDown();
                 $("img").attr("src", "/img/BookCoverPurple.jpg");
+                $(".CustomImg").val("");
             });
             $("#CoverOrange").click(function () {
                 $("img").slideDown();
                 $("img").attr("src", "/img/BookCoverOrange.jpg");
+                $(".CustomImg").val("");
             });
-            $(".CoverImg").click(function () {
-                $(".CoverRadioButtons").prop("checked", false);
+            $("#CustomImgRadio").click(function () {
                 $("img").slideUp();
-            });             
+                $(".CustomImg").slideDown();
+                $(".CoverRadioButtons").prop("checked", false);
+            });      
+            $(".CustomImg").click(function () {
+                $(".CoverRadioButtons").prop("checked", false);
+            });   
         });
     </script>
 }
