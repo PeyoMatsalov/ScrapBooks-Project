@@ -1,12 +1,40 @@
 ﻿@model ScrapBookProject.Web.ViewModels.ScrapBooks.CreateScrapBookInputModel
 @{
     this.ViewData["Title"] = "Create a ScrapBook";
+    var imgTemplate = "";
 }
 <h1 class="text-center">Create a ScrapBook!</h1>
 
 
 <form method="post" class="col-md-6 offset-md-3">
     <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="align-content-md-center justify-content-md-center">
+        <img src="@imgTemplate" alt="Alternate Text" width="350" height="560" />
+    </div>
+    <hr>
+    <div>
+        <h6>Please choose a cover for your book. You could also use your own cover if you provide a link in the box bellow.</h6>
+    </div>
+    <div>
+        <input class="CoverRadioButtons" id="CoverBlue" type="radio" asp-for="CoverUrl" value="/img/BookCoverBlue.jpg" />Blue<br />
+    </div>
+    <div>
+        <input class="CoverRadioButtons" id="CoverGreen" type="radio" asp-for="CoverUrl" value="/img/BookCoverGreen.jpg" />Green<br />
+    </div>
+    <div>
+        <input class="CoverRadioButtons" id="CoverOrange" type="radio" asp-for="CoverUrl" value="/img/BookCoverOrange.jpg" />Orange<br />
+    </div>
+    <div>
+        <input class="CoverRadioButtons" id="CoverPurple" type="radio" asp-for="CoverUrl" value="/img/BookCoverPurple.jpg" />Purple<br />
+    </div>
+    <div>
+        <input class="CoverRadioButtons" id="CoverRed" type="radio" asp-for="CoverUrl" value="/img/BookCoverRed.jpg" />Red<br />
+    </div>
+    <div class="form-group">
+        <label asp-for="CoverUrl"></label>
+        <input asp-for="CoverUrl" class="form-control CoverImg" placeholder="Leave blank to use default images" />
+        <span asp-validation-for="CoverUrl" class="text-danger"></span>
+    </div>
     <div class="form-group">
         <label asp-for="Name"></label>
         <input asp-for="Name" class="form-control" />
@@ -17,15 +45,10 @@
         <textarea asp-for="Description" class="form-control" rows="5"></textarea>
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="CoverUrl"></label>
-        <input asp-for="CoverUrl" class="form-control" />
-        <span asp-validation-for="CoverUrl" class="text-danger"></span>
-    </div>
     <div>
         <h6>Would you like your scrapbook to be visible to everyone or only you?</h6>
     </div>
-    
+
     <div>
         <input type="radio" asp-for="Vis" value="Private" />Only me<br />
     </div>
@@ -36,3 +59,35 @@
         <button type="submit" class="btn btn-outline-primary btn-pill">Done!</button>
     </div>
 </form>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("img").hide();
+            $("#CoverBlue").click(function () {
+                $("img").slideDown();
+                $("img").attr("src", "/img/BookCoverBlue.jpg");
+            });
+            $("#CoverRed").click(function () {
+                $("img").slideDown();
+                $("img").attr("src", "/img/BookCoverRed.jpg");
+            });
+            $("#CoverGreen").click(function () {
+                $("img").slideDown();
+                $("img").attr("src", "/img/BookCoverGreen.jpg");
+            });
+            $("#CoverPurple").click(function () {
+                $("img").slideDown();
+                $("img").attr("src", "/img/BookCoverPurple.jpg");
+            });
+            $("#CoverOrange").click(function () {
+                $("img").slideDown();
+                $("img").attr("src", "/img/BookCoverOrange.jpg");
+            });
+            $(".CoverImg").click(function () {
+                $(".CoverRadioButtons").prop("checked", false);
+                $("img").slideUp();
+            });             
+        });
+    </script>
+}

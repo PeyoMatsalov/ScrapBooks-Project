@@ -14,7 +14,7 @@
         [MinLength(10)]
         public string Description { get; set; }
 
-        [Display(Name = "Cover Image")]
+        [Display(Name = "Custom cover image")]
         public string CoverUrl { get; set; }
 
         public string Vis { get; set; }

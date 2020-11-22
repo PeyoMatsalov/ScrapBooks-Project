@@ -5,50 +5,33 @@
 }
 <h1 class="text-center">Here are your ScrapBooks!</h1>
 
-@*<table class="table" id="myTable">
-        <thead>
-            <tr>
-                <th scope="col">Cover</th>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var book in Model)
-            {
-                <tr class="tr">
-                    <td><img src="@book.CoverUrl" alt="@book.CoverUrl" width="120" height="185"></td>
-                    <td>@book.Name</td>
-                    <td>@book.Description</td>
-                    <td>
-                        <a href="/Pages/Pages/@book.Id"> View </a> |
-                        <a href="/Movies/Details/4"> Details </a> |
-                        <a href="/Movies/Delete/4"> Delete </a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>*@
-
 <div class="container">
     @foreach (var book in Model)
     {
         if (itemCount % 3 == 0)
         {
-            @:<div class="row">
-            }
-            <div class="book-container col-md-4">
-                <div class="book">
-                    <img alt="book img"
+            @:<div class="row rowSeparator">
+        }
+        <div class="book-container col-md-4 justify-content-md-center align-content-md-center">
+            <div class="container">
+                <div class="row align-content-center">
+                    <p>@book.Name</p>
+                </div>
+                <div class="book row">
+                    <img alt="book cover"
                          src="@book.CoverUrl" />
                 </div>
+                <div class="rowButtons">
+                    <a class="btn btn-light" href="/Pages/Pages/@book.Id"> View </a> |
+                    <a class="btn btn-info" href="/Movies/Details/4"> Details </a> |
+                    <a class="btn btn-danger" href="/Movies/Delete/4"> Delete </a>
+                </div>
             </div>
-            if (itemCount % 3 == 2)
-            {
-
+        </div>
+        if (itemCount % 3 == 2)
+        {
             @:</div>
             <hr>
-
         }
         itemCount++;
     }
@@ -63,19 +46,14 @@
     </div>
 </div>
 
-
-@section Scripts{
-    <script>
-        $(".tr").hover(function () {
-            $(this).css("background-color", "lightgrey");
-        }, function () {
-            $(this).css("background-color", "white");
-        });
-    </script>
-}
-
 <style>
-    .row{
+    .rowButtons
+    {
+        margin-top: 10%;
+    }
+
+    .rowSeparator {
+        margin-top: 5%;
         margin-bottom: 5%;
     }
     h1 {
