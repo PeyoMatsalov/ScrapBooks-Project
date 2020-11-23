@@ -1,6 +1,5 @@
 ﻿@model ScrapBookProject.Web.ViewModels.Pages.ScrapBookPagesViewModel
 
-
 <h1 class="text-center">Pages count: @Model.Pages.Count</h1>
 
 <div class="container">
@@ -11,12 +10,14 @@
                 { 
                     <h3>It looks like your scrap book is empty. Click the button to create your first page on it.</h3>
                     <div class="container">
-                <div class="row justify-content-md-center">
-                    <div class="col-md-auto">
-                            <a class="btn btn-outline-primary" asp-controller="Pages" asp-action="AddPage"> Click to add a page </a>
+                        <div class="row justify-content-md-center">
+                            <form method="post">
+                                <div class="col-md-auto">
+                                    <a class="btn btn-outline-primary" asp-controller="Pages" asp-action="AddPage"> Click to add a page </a>
+                                </div>
+                             </form>
+                        </div>
                     </div>
-                </div>
-            </div>
                 }
                 else
                 {

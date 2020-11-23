@@ -52,6 +52,9 @@
                         options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                     }).AddRazorRuntimeCompilation();
             services.AddRazorPages();
+            services.AddDatabaseDeveloperPageExceptionFilter();
+
+            services.AddSession();
 
             services.AddSingleton(this.configuration);
 
@@ -82,7 +85,7 @@
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                app.UseMigrationsEndPoint();
             }
             else
             {
@@ -98,6 +101,8 @@
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(
                 endpoints =>

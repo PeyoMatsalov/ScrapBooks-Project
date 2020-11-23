@@ -1,9 +1,10 @@
 ﻿@model ScrapBookProject.Web.ViewModels.Pages.CreatePageInputModel
 @{
     this.ViewData["Title"] = "Add a page";
+    //var bookId = int.Parse(ViewBag.BookId);
 }
 <h1 class="text-center">Write something for your page!</h1>
-
+<h1 class="text-center">Book Id: @ViewBag.BookId</h1>
 <form method="post" class="col-md-6 offset-md-3">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">

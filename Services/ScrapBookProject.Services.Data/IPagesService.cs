@@ -8,7 +8,7 @@
 
     public interface IPagesService
     {
-        Task CreateAsync(CreatePageInputModel input);
+        Task CreateAsync(CreatePageInputModel input, int bookId);
 
         ICollection<PageViewModel> GetPagesByBookId(int bookId);
     }

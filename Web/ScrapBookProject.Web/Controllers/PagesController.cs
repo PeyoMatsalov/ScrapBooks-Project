@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using ScrapBookProject.Services.Data;
     using ScrapBookProject.Web.ViewModels.Pages;
@@ -25,6 +26,8 @@
         public IActionResult Pages(int id)
         {
             //var pages = this.pagesService.GetPagesByBookId(id);
+
+            this.Response.Cookies.Append("BookId", id.ToString(), new CookieOptions() { Expires = DateTimeOffset.Now.AddHours(1), SameSite = SameSiteMode.Strict });
             var scrapBook = this.scrapBooksService.GetScrapBookWithPagesById(id);
             var viewModel = new ScrapBookPagesViewModel()
             {
@@ -38,14 +41,18 @@
 
         public IActionResult AddPage()
         {
+            this.ViewData["BookId"] = this.Request.Cookies["BookId"];
+
             return this.View();
         }
 
         [HttpPost]
         public async Task<IActionResult> AddPage(CreatePageInputModel input)
         {
-            await this.pagesService.CreateAsync(input);
-            return this.Redirect("/Pages/Pages");
+            int bookId = int.Parse(this.Request.Cookies["BookId"]);
+
+            await this.pagesService.CreateAsync(input, bookId);
+            return this.Redirect($"/Pages/Pages/{bookId}");
         }
     }
 }
