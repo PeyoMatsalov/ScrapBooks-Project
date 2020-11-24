@@ -23,21 +23,15 @@
 
         public async Task CreateAsync(CreatePageInputModel input, int bookId)
         {
-            var pages = this.pagesRepository.All().Where(x => x.ScrapBookId == input.ScrapBookId).ToList();
+            var pages = this.pagesRepository.All().Where(x => x.ScrapBookId == bookId).ToList();
 
-            int pageNumber = 1;
-
-            if (pages.Count > 0 && pages.Last().PageNumber != 0)
-            {
-                pageNumber = pages.Last().PageNumber;
-                pageNumber++;
-            }
+            int pageNumber = pages.Last().PageNumber;
 
             Page page = new Page
             {
                 ScrapBookId = bookId,
                 Content = input.Content,
-                PageNumber = pageNumber,
+                PageNumber = ++pageNumber,
             };
 
             await this.pagesRepository.AddAsync(page);

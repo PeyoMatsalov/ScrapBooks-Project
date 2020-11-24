@@ -30,7 +30,7 @@
         <input class="CoverRadioButtons" id="CoverRed" type="radio" asp-for="CoverUrl" value="/img/BookCoverRed.jpg" />Red<br />
     </div>
     <div>
-        <input id="CustomImgRadio" type="radio" asp-for="CoverUrl" value="" />Custom<br />
+        <input id="CustomImgRadio" type="radio"/>Custom<br />
     </div>
     <div class="form-group">
         <input asp-for="CoverUrl" class="form-control CustomImg" placeholder="Enter your custom URL here."/>
@@ -71,26 +71,31 @@
                 $("img").slideDown();
                 $("img").attr("src", "/img/BookCoverBlue.jpg");
                 $(".CustomImg").val("");
+                $("#CustomImgRadio").prop("checked", false);
             });
             $("#CoverRed").click(function () {
                 $("img").slideDown();
                 $("img").attr("src", "/img/BookCoverRed.jpg");
                 $(".CustomImg").val("");
+                $("#CustomImgRadio").prop("checked", false);
             });
             $("#CoverGreen").click(function () {
                 $("img").slideDown();
                 $("img").attr("src", "/img/BookCoverGreen.jpg");
                 $(".CustomImg").val("");
+                $("#CustomImgRadio").prop("checked", false);
             });
             $("#CoverPurple").click(function () {
                 $("img").slideDown();
                 $("img").attr("src", "/img/BookCoverPurple.jpg");
                 $(".CustomImg").val("");
+                $("#CustomImgRadio").prop("checked", false);
             });
             $("#CoverOrange").click(function () {
                 $("img").slideDown();
                 $("img").attr("src", "/img/BookCoverOrange.jpg");
                 $(".CustomImg").val("");
+                $("#CustomImgRadio").prop("checked", false);
             });
             $("#CustomImgRadio").click(function () {
                 $("img").slideUp();
