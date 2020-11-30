@@ -33,7 +33,7 @@
                 Name = input.Name,
                 Description = input.Description,
                 CoverUlr = input.CoverUrl,
-                Visibility = input.Vis,
+                Visibility = input.Visibility,
             };
 
             var page = new Page
@@ -50,6 +50,13 @@
             await this.scrapBooksRepository.SaveChangesAsync();
         }
 
+        public async void DeleteScrapBook(int scrapBookId)
+        {
+            var book = this.scrapBooksRepository.All().FirstOrDefault(x => x.Id == scrapBookId);
+            this.scrapBooksRepository.Delete(book);
+            await this.scrapBooksRepository.SaveChangesAsync();
+        }
+
         public ICollection<ScrapBookViewModel> GetAllScrapBooksForUser(string userId)
         {
             var scrapBooksDb = this.scrapBooksRepository.All().Where(x => x.CreatorId == userId).ToList();
@@ -63,6 +70,7 @@
                     Name = scrapBookDbModel.Name,
                     Description = scrapBookDbModel.Description,
                     CoverUrl = scrapBookDbModel.CoverUlr,
+                    IsDeleted = scrapBookDbModel.IsDeleted,
                 };
 
                 resultScrapBooks.Add(scrapBook);

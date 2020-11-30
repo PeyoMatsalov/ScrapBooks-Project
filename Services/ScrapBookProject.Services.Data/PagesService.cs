@@ -49,7 +49,6 @@
                     BookId = bookId,
                     Content = book.Content,
                     Number = book.PageNumber,
-                    ImageUrl = book.ImageUrl,
                 };
 
                 pages.Add(page);

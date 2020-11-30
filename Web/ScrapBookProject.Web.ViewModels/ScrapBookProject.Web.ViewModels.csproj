@@ -23,4 +23,8 @@
     <ProjectReference Include="..\..\Services\ScrapBookProject.Services.Mapping\ScrapBookProject.Services.Mapping.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Browse\" />
+  </ItemGroup>
+
 </Project>

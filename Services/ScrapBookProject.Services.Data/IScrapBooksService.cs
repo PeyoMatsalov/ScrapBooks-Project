@@ -16,5 +16,7 @@
         ScrapBookViewModel GetScrapBookById(int scrapBookId);
 
         ScrapBookPagesViewModel GetScrapBookWithPagesById(int scrapBookId);
+
+        void DeleteScrapBook(int scrapBookId);
     }
 }

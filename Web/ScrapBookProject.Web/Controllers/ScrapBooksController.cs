@@ -54,5 +54,12 @@
 
             return this.Redirect("/ScrapBooks/ScrapBooks");
         }
+
+        public IActionResult Delete(int id)
+        {
+            this.scrapBooksService.DeleteScrapBook(id);
+
+            return this.Redirect("/ScrapBooks/ScrapBooks");
+        }
     }
 }

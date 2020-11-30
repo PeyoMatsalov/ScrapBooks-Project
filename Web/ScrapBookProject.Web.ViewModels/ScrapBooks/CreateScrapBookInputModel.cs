@@ -19,6 +19,6 @@
         public string CoverUrl { get; set; }
 
         [Required(ErrorMessage = "Please choose who can see your scrapbook.")]
-        public string Vis { get; set; }
+        public string Visibility { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace ScrapBookProject.Web.ViewModels.Pages
 {
-    public class PageViewModel
+    public class LeftPageViewModel
     {
         public int BookId { get; set; }
 

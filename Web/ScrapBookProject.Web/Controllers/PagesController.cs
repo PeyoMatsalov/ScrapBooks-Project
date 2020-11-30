@@ -25,8 +25,6 @@
 
         public IActionResult Pages(int id)
         {
-            //var pages = this.pagesService.GetPagesByBookId(id);
-
             this.Response.Cookies.Append("BookId", id.ToString(), new CookieOptions() { Expires = DateTimeOffset.Now.AddHours(1), SameSite = SameSiteMode.Strict });
             var scrapBook = this.scrapBooksService.GetScrapBookWithPagesById(id);
             var viewModel = new ScrapBookPagesViewModel()
