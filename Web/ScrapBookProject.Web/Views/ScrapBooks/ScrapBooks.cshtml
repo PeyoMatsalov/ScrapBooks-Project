@@ -12,35 +12,39 @@
         {
             if (itemCount % 3 == 0)
             {
-            @:<div class="row rowSeparator">
+                @:<div class="row rowSeparator">
+                }
+                <div class="book-container col-md-4">
+                    <div class="container">
+                        <div>
+                            <p>@book.Name</p>
+                        </div>
+                        <div class="book row">
+                            <img alt="book cover"
+                                 src="@book.CoverUrl" />
+                        </div>
+                        <div class="rowButtons">
+                            <a class="btn btn-light" asp-controller="Pages" asp-action="Pages" asp-route-Id="@book.Id"> Open </a> |
+                            <a class="btn btn-info" href="/Movies/Details/4"> Edit </a> |
+                            <a class="btn btn-danger" asp-controller="ScrapBooks" asp-action="Delete" asp-route-Id="@book.Id"> Delete </a>
+                        </div>
+                    </div>
+                </div>
+                if (itemCount % 3 == 2)
+                {
+                @:</div>
+                <hr>
             }
-         <div class="book-container col-md-4 justify-content-md-center align-content-md-center">
-             <div class="container">
-                 <div>
-                     <p>@book.Name</p>
-                 </div>
-                 <div class="book row">
-                     <img alt="book cover"
-                          src="@book.CoverUrl" />
-                 </div>
-                 <div class="rowButtons">
-                     <a class="btn btn-light" asp-controller="Pages" asp-action="Pages" asp-route-Id="@book.Id"> View </a> |
-                     <a class="btn btn-info" href="/Movies/Details/4"> Details </a> |
-                     <a class="btn btn-danger" asp-controller="ScrapBooks" asp-action="Delete" asp-route-Id="@book.Id"> Delete </a>
-                 </div>
-             </div>
-         </div>
-             if (itemCount % 3 == 2)
-             {
-             @:</div>
-             <hr>
-             }
-             itemCount++;
+            itemCount++;
         }
+    }
+    @if (!Model.Any())
+    {
+        <h2 class="text-center">It appears you have no ScrapBooks to show. Click the button below to create one!</h2>
     }
 </div>
 <div class="container">
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-md-center m-5">
         <div class="col-md-auto">
             <form method="get" asp-controller="ScrapBooks" asp-action="Create">
                 <button class="btn btn-outline-primary btn-pill">Create a ScrapBook!</button>

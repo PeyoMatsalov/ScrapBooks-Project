@@ -1,0 +1,19 @@
+﻿@model ICollection<ScrapBookProject.Web.ViewModels.Browse.CategoryViewModel>
+@{
+    this.ViewData["Title"] = "BrowseScrapBooks";
+}
+
+<div class="container">
+    <div class="row">
+        @foreach (var category in Model)
+        {
+            <div class="media col-md-4 border border-dark">
+                <img class="mr-3" src="@category.ImageUrl" width="100" alt="@category.Name">
+                <div class="media-body">
+                    <h5 class="mt-0"><a asp-controller="Browse" asp-action="Category" asp-route-Id="@category.Id">@category.Name</a></h5>
+                     @category.Description
+                </div>
+            </div>
+        }
+    </div>
+</div>

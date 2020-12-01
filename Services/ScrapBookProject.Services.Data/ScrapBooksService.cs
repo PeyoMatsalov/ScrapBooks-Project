@@ -34,6 +34,7 @@
                 Description = input.Description,
                 CoverUlr = input.CoverUrl,
                 Visibility = input.Visibility,
+                CategoryId = 1,
             };
 
             var page = new Page

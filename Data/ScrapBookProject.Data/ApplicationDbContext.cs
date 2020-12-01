@@ -29,7 +29,7 @@
 
         public DbSet<Page> Pages { get; set; }
 
-        public DbSet<Tag> Tags { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

@@ -26,6 +26,7 @@
                     UserName = "Peyo.IT@mail.com",
                     NormalizedUserName = "PEYO.IT@MAIL.COM",
                     NormalizedEmail = "PEYO.IT@MAIL.COM",
+                    PasswordHash = "AQAAAAEAACcQAAAAEMKmC4NqhTWffn4j/f5vLkC2Jb+FWa6R2vqZRm24rHYvJmyfIIZEqCNv48FFe40BnQ==",
                     Email = "Peyo.IT@mail.com",
                     EmailConfirmed = false,
                     SecurityStamp = "RIMWBDMW2JSUOQJCDSSAE6JXFESSDJZ7",
