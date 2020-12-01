@@ -19,7 +19,6 @@
 
         private static async Task SeedUser(ApplicationDbContext dbContext)
         {
-            
             if (!dbContext.Users.Any())
             {
                 var user = new ApplicationUser

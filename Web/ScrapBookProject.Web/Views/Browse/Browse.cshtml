@@ -3,7 +3,6 @@
     this.ViewData["Title"] = "Your ScrapBooks";
     var itemCount = 0;
 }
-<h1 class="text-center">Here are your ScrapBooks!</h1>
 
 <div class="container">
     @foreach (var book in Model)
@@ -35,15 +34,6 @@
             }
             itemCount++;
     }
-</div>
-<div class="container">
-    <div class="row justify-content-md-center">
-        <div class="col-md-auto">
-            <form method="get" asp-controller="ScrapBooks" asp-action="Create">
-                <button class="btn btn-outline-primary btn-pill">Create a ScrapBook!</button>
-            </form>
-        </div>
-    </div>
 </div>
 
 <style>

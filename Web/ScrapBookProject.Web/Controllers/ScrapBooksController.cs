@@ -55,11 +55,11 @@
             return this.Redirect("/ScrapBooks/ScrapBooks");
         }
 
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            this.scrapBooksService.DeleteScrapBook(id);
+            await this.scrapBooksService.DeleteScrapBookAsync(id);
 
-            return this.Redirect("/ScrapBooks/ScrapBooks");
+            return this.RedirectToAction("ScrapBooks");
         }
     }
 }

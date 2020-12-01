@@ -50,10 +50,11 @@
             await this.scrapBooksRepository.SaveChangesAsync();
         }
 
-        public async void DeleteScrapBook(int scrapBookId)
+        public async Task DeleteScrapBookAsync(int scrapBookId)
         {
             var book = this.scrapBooksRepository.All().FirstOrDefault(x => x.Id == scrapBookId);
-            this.scrapBooksRepository.Delete(book);
+            book.IsDeleted = true;
+            this.scrapBooksRepository.Update(book);
             await this.scrapBooksRepository.SaveChangesAsync();
         }
 
