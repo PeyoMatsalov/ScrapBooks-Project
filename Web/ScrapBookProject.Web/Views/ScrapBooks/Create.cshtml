@@ -30,10 +30,10 @@
         <input class="CoverRadioButtons" id="CoverRed" type="radio" asp-for="CoverUrl" value="/img/BookCoverRed.jpg" />Red<br />
     </div>
     <div>
-        <input id="CustomImgRadio" type="radio"/>Custom<br />
+        <input id="CustomImgRadio" type="radio" />Custom<br />
     </div>
     <div class="form-group">
-        <input asp-for="CoverUrl" class="form-control CustomImg" placeholder="Enter your custom URL here."/>
+        <input asp-for="CoverUrl" class="form-control CustomImg" placeholder="Enter your custom URL here." />
         <span asp-validation-for="CoverUrl" class="text-danger"></span>
     </div>
     <div class="form-group">
@@ -45,6 +45,11 @@
         <label asp-for="Description"></label>
         <textarea asp-for="Description" class="form-control" rows="5"></textarea>
         <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryId">Category</label>
+        <select asp-for="CategoryId" asp-items="Model.Categories.Select(x => new SelectListItem(x.Name,x.Id.ToString()))" class="form-control"></select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
     </div>
     <div>
         <h6>Would you like your scrapbook to be visible to everyone or only you?</h6>

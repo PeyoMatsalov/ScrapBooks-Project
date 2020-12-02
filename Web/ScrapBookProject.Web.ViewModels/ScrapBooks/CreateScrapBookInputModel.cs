@@ -1,8 +1,9 @@
 ﻿namespace ScrapBookProject.Web.ViewModels.ScrapBooks
 {
-    using System.Collections;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
+    using ScrapBookProject.Web.ViewModels.Browse;
 
     public class CreateScrapBookInputModel
     {
@@ -20,5 +21,10 @@
 
         [Required(ErrorMessage = "Please choose who can see your scrapbook.")]
         public string Visibility { get; set; }
+
+        [Required(ErrorMessage = "Please choose a category for your scrapbook.")]
+        public int CategoryId { get; set; }
+
+        public IEnumerable<CategoryDropdownViewModel> Categories { get; set; }
     }
 }

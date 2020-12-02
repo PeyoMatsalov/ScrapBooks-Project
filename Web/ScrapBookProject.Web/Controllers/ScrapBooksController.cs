@@ -10,6 +10,7 @@
     using ScrapBookProject.Data.Common;
     using ScrapBookProject.Data.Models;
     using ScrapBookProject.Services.Data;
+    using ScrapBookProject.Web.ViewModels.Browse;
     using ScrapBookProject.Web.ViewModels.Pages;
     using ScrapBookProject.Web.ViewModels.ScrapBooks;
 
@@ -17,13 +18,16 @@
     public class ScrapBooksController : BaseController
     {
         private readonly IScrapBooksService scrapBooksService;
+        private readonly IBrowseService browseService;
         private readonly UserManager<ApplicationUser> userManager;
 
         public ScrapBooksController(
             UserManager<ApplicationUser> userManager,
-            IScrapBooksService scrapBooksService)
+            IScrapBooksService scrapBooksService,
+            IBrowseService browseService)
         {
             this.scrapBooksService = scrapBooksService;
+            this.browseService = browseService;
             this.userManager = userManager;
         }
 
@@ -37,7 +41,17 @@
 
         public IActionResult Create()
         {
-            return this.View();
+            var categories = this.browseService.GetAllCategories().Select(x => new CategoryDropdownViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+            });
+
+            var viewModel = new CreateScrapBookInputModel
+            {
+                Categories = categories,
+            };
+            return this.View(viewModel);
         }
 
         [HttpPost]
