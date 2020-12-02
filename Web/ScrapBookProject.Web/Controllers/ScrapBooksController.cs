@@ -71,6 +71,14 @@
 
         public async Task<IActionResult> Delete(int id)
         {
+            var creatorId = this.scrapBooksService.GetScrapBookById(id).CreatorId;
+            var userId = this.userManager.GetUserId(this.User);
+
+            if (creatorId != userId)
+            {
+                return this.Redirect("/Categories/Categories");
+            }
+
             await this.scrapBooksService.DeleteScrapBookAsync(id);
 
             return this.RedirectToAction("ScrapBooks");

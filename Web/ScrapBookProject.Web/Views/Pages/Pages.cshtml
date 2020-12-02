@@ -1,7 +1,13 @@
 ﻿@model ScrapBookProject.Web.ViewModels.Pages.ScrapBookPagesViewModel
+@using System.Security.Claims
+@{ 
+    ClaimsPrincipal currentUser = this.User;
+    var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+}
 
 <div class="text-center">
-    <h1>@Model.Name - @Model.CreatorId</h1>
+    <h1>@Model.Name</h1>
 </div>
 <div class="container">
     <div class="row align-items-start">
@@ -10,9 +16,12 @@
                 @if (Model.Pages.Count == 1)
                 {
                     <h3>It looks like your scrap book is empty. Click the button to create your first page for it.</h3>
-                    <div class="col-md-auto text-center">
-                        <a class="btn btn-outline-primary" asp-controller="Pages" asp-action="AddPage"> Click to add a page </a>
-                    </div>
+                    if (currentUserID == Model.CreatorId)
+                    {
+                        <div class="col-md-auto text-center">
+                            <a class="btn btn-outline-primary" asp-controller="Pages" asp-action="AddPage"> Click to add a page </a>
+                        </div>
+                    }
                 }
                 else
                 {
@@ -29,7 +38,7 @@
                             <div class="col text-center" id="btnPrevious">
                                 <button class="btn-dark">Previous</button>
                             </div>
-                            @if (true)
+                            @if (currentUserID == Model.CreatorId)
                             {
                                 <div>
                                     <form method="post">
