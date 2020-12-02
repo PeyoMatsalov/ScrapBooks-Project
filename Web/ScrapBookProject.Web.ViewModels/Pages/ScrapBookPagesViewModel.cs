@@ -9,6 +9,6 @@
 
     public class ScrapBookPagesViewModel : ScrapBookViewModel
     {
-        public ICollection<Page> Pages { get; set; }
+        public ICollection<PageViewModel> Pages { get; set; }
     }
 }

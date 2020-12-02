@@ -1,4 +1,6 @@
-﻿namespace ScrapBookProject.Web.ViewModels.Pages
+﻿using Ganss.XSS;
+
+namespace ScrapBookProject.Web.ViewModels.Pages
 {
     public class PageViewModel
     {
@@ -7,6 +9,8 @@
         public int Number { get; set; }
 
         public string Content { get; set; }
+
+        public string SanitizedContent => new HtmlSanitizer().Sanitize(this.Content);
 
         public bool HasPreviousPage => this.Number > 0;
 

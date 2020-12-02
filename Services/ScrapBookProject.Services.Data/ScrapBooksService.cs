@@ -107,7 +107,11 @@
                 Name = scrapBookDbModel.Name,
                 Description = scrapBookDbModel.Description,
                 CoverUrl = scrapBookDbModel.CoverUlr,
-                Pages = pagesDbModel,
+                Pages = pagesDbModel.Select(x => new PageViewModel
+                {
+                    Number = x.PageNumber,
+                    Content = x.Content,
+                }).ToList(),
             };
 
             return viewModel;
