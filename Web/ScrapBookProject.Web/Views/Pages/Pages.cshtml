@@ -1,34 +1,36 @@
 ﻿@model ScrapBookProject.Web.ViewModels.Pages.ScrapBookPagesViewModel
 
-    <div class="text-center">
-        <h1>@Model.Name</h1>
-    </div>
-    <div class="container">
-        <div class="row align-items-start">
-            <div class="col">
-                <div class="container">
-                    @if (Model.Pages.Count == 1)
-                    {
-                        <h3>It looks like your scrap book is empty. Click the button to create your first page for it.</h3>
-                        <div class="col-md-auto text-center">
-                            <a class="btn btn-outline-primary" asp-controller="Pages" asp-action="AddPage"> Click to add a page </a>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="container">
-                            <div class="row" style="height: 500px">
-                                <div class="col">
-                                    @Html.Raw(Model.Pages.Skip(1).FirstOrDefault().SanitizedContent)
-                                </div>
-                                <div class="col">
-                                    @Html.Raw(Model.Pages.FirstOrDefault().SanitizedContent)
-                                </div>
+<div class="text-center">
+    <h1>@Model.Name - @Model.CreatorId</h1>
+</div>
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col">
+            <div class="container">
+                @if (Model.Pages.Count == 1)
+                {
+                    <h3>It looks like your scrap book is empty. Click the button to create your first page for it.</h3>
+                    <div class="col-md-auto text-center">
+                        <a class="btn btn-outline-primary" asp-controller="Pages" asp-action="AddPage"> Click to add a page </a>
+                    </div>
+                }
+                else
+                {
+                    <div class="container">
+                        <div class="row" style="height: 500px">
+                            <div class="col">
+                                @Html.Raw(Model.Pages.Skip(1).FirstOrDefault().SanitizedContent)
                             </div>
-                            <div class="row">
-                                <div class="col text-center" id="btnPrevious">
-                                    <button class="btn-dark">Previous</button>
-                                </div>
+                            <div class="col">
+                                @Html.Raw(Model.Pages.FirstOrDefault().SanitizedContent)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-center" id="btnPrevious">
+                                <button class="btn-dark">Previous</button>
+                            </div>
+                            @if (true)
+                            {
                                 <div>
                                     <form method="post">
                                         <div class="col-md-auto text-center">
@@ -36,16 +38,17 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="col text-center" id="btnNext">
-                                    <button class="btn-dark">Next</button>
-                                </div>
+                            }
+                            <div class="col text-center" id="btnNext">
+                                <button class="btn-dark">Next</button>
                             </div>
                         </div>
-                    }
-                </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
+</div>
 
 @section Scripts
 {

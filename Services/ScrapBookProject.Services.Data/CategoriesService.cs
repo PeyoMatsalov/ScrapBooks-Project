@@ -7,15 +7,15 @@
 
     using ScrapBookProject.Data.Common.Repositories;
     using ScrapBookProject.Data.Models;
-    using ScrapBookProject.Web.ViewModels.Browse;
+    using ScrapBookProject.Web.ViewModels.Categories;
     using ScrapBookProject.Web.ViewModels.ScrapBooks;
 
-    public class BrowseService : IBrowseService
+    public class CategoriesService : ICategoriesService
     {
         private readonly IDeletableEntityRepository<ScrapBook> scrapBooksRepository;
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
 
-        public BrowseService(IDeletableEntityRepository<ScrapBook> scrapBooksRepository, IDeletableEntityRepository<Category> categoriesRepository)
+        public CategoriesService(IDeletableEntityRepository<ScrapBook> scrapBooksRepository, IDeletableEntityRepository<Category> categoriesRepository)
         {
             this.scrapBooksRepository = scrapBooksRepository;
             this.categoriesRepository = categoriesRepository;

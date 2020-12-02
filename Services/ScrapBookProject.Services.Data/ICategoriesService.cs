@@ -3,10 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
-    using ScrapBookProject.Web.ViewModels.Browse;
+    using ScrapBookProject.Web.ViewModels.Categories;
     using ScrapBookProject.Web.ViewModels.ScrapBooks;
 
-    public interface IBrowseService
+    public interface ICategoriesService
     {
         ICollection<ScrapBookViewModel> GetAllPublicScrapBooks();
 

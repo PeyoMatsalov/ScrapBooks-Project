@@ -10,26 +10,26 @@
     using ScrapBookProject.Data.Common.Repositories;
     using ScrapBookProject.Data.Models;
     using ScrapBookProject.Services.Data;
-    using ScrapBookProject.Web.ViewModels.Browse;
+    using ScrapBookProject.Web.ViewModels.Categories;
 
     [Authorize]
-    public class BrowseController : BaseController
+    public class CategoriesController : BaseController
     {
-        private readonly IBrowseService browseService;
+        private readonly ICategoriesService categoriesService;
 
-        public BrowseController(IBrowseService browseService)
+        public CategoriesController(ICategoriesService categoriesService)
         {
-            this.browseService = browseService;
+            this.categoriesService = categoriesService;
         }
 
         public IActionResult Categories()
         {
-            return this.View(this.browseService.GetAllCategories());
+            return this.View(this.categoriesService.GetAllCategories());
         }
 
         public IActionResult Category(int id)
         {
-            var category = this.browseService.GetScrapBooksByCategoryId(id);
+            var category = this.categoriesService.GetScrapBooksByCategoryId(id);
             return this.View(category);
         }
     }

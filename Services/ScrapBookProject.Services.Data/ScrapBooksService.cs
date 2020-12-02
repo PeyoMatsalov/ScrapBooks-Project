@@ -69,6 +69,7 @@
                 var scrapBook = new ScrapBookViewModel
                 {
                     Id = scrapBookDbModel.Id,
+                    CreatorId = scrapBookDbModel.CreatorId,
                     Name = scrapBookDbModel.Name,
                     Description = scrapBookDbModel.Description,
                     CoverUrl = scrapBookDbModel.CoverUlr,
@@ -104,6 +105,7 @@
             var viewModel = new ScrapBookPagesViewModel
             {
                 Id = scrapBookDbModel.Id,
+                CreatorId = scrapBookDbModel.CreatorId,
                 Name = scrapBookDbModel.Name,
                 Description = scrapBookDbModel.Description,
                 CoverUrl = scrapBookDbModel.CoverUlr,

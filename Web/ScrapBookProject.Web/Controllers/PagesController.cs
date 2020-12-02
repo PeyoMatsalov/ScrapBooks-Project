@@ -30,6 +30,7 @@
             var viewModel = new ScrapBookPagesViewModel()
             {
                 Name = scrapBook.Name,
+                CreatorId = scrapBook.CreatorId,
                 Id = scrapBook.Id,
                 Pages = scrapBook.Pages,
             };

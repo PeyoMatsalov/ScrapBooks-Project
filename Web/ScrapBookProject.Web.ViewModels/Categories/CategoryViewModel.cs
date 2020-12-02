@@ -1,4 +1,4 @@
-﻿namespace ScrapBookProject.Web.ViewModels.Browse
+﻿namespace ScrapBookProject.Web.ViewModels.Categories
 {
     public class CategoryViewModel
     {

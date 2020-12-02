@@ -1,6 +1,6 @@
-﻿@model ICollection<ScrapBookProject.Web.ViewModels.Browse.CategoryViewModel>
+﻿@model ICollection<ScrapBookProject.Web.ViewModels.Categories.CategoryViewModel>
 @{
-    this.ViewData["Title"] = "BrowseScrapBooks";
+    this.ViewData["Title"] = "Categories";
 }
 
 <div class="container">
@@ -10,7 +10,7 @@
             <div class="media col-md-4 border border-dark">
                 <img class="mr-3" src="@category.ImageUrl" width="150" alt="@category.Name">
                 <div class="media-body">
-                    <h5 class="mt-0"><a asp-controller="Browse" asp-action="Category" asp-route-Id="@category.Id">@category.Name</a></h5>
+                    <h5 class="mt-0"><a asp-controller="Categories" asp-action="Category" asp-route-Id="@category.Id">@category.Name</a></h5>
                      @category.Description
                 </div>
             </div>

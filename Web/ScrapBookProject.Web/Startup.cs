@@ -67,7 +67,7 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<IScrapBooksService, ScrapBooksService>();
             services.AddTransient<IPagesService, PagesService>();
-            services.AddTransient<IBrowseService, BrowseService>();
+            services.AddTransient<ICategoriesService, CategoriesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

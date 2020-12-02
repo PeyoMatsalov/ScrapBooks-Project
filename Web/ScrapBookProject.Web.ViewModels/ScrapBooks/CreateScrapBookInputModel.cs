@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using ScrapBookProject.Web.ViewModels.Browse;
+    using ScrapBookProject.Web.ViewModels.Categories;
 
     public class CreateScrapBookInputModel
     {
