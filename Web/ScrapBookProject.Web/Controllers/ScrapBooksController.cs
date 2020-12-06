@@ -18,16 +18,16 @@
     public class ScrapBooksController : BaseController
     {
         private readonly IScrapBooksService scrapBooksService;
-        private readonly ICategoriesService browseService;
+        private readonly ICategoriesService categoriesService;
         private readonly UserManager<ApplicationUser> userManager;
 
         public ScrapBooksController(
             UserManager<ApplicationUser> userManager,
             IScrapBooksService scrapBooksService,
-            ICategoriesService browseService)
+            ICategoriesService categoriesService)
         {
             this.scrapBooksService = scrapBooksService;
-            this.browseService = browseService;
+            this.categoriesService = categoriesService;
             this.userManager = userManager;
         }
 
@@ -41,7 +41,7 @@
 
         public IActionResult Create()
         {
-            var categories = this.browseService.GetAllCategories().Select(x => new CategoryDropdownViewModel
+            var categories = this.categoriesService.GetAllCategories().Select(x => new CategoryDropdownViewModel
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -71,16 +71,45 @@
 
         public async Task<IActionResult> Delete(int id)
         {
-            var creatorId = this.scrapBooksService.GetScrapBookById(id).CreatorId;
-            var userId = this.userManager.GetUserId(this.User);
-
-            if (creatorId != userId)
-            {
-                return this.Redirect("/Categories/Categories");
-            }
-
             await this.scrapBooksService.DeleteScrapBookAsync(id);
 
+            return this.RedirectToAction("ScrapBooks");
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var scrapBook = this.scrapBooksService.GetScrapBookById(id);
+            var viewModel = new EditScrapBookInputModel
+            {
+                Name = scrapBook.Name,
+                Description = scrapBook.Description,
+                CoverUrl = scrapBook.CoverUrl,
+                Visibility = scrapBook.Visibility,
+                CategoryId = scrapBook.CategoryId,
+            };
+
+            viewModel.Categories = this.categoriesService.GetAllCategories().Select(x => new CategoryDropdownViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+            });
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, EditScrapBookInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                input.Categories = this.categoriesService.GetAllCategories().Select(x => new CategoryDropdownViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                });
+                return this.View(input);
+            }
+
+            await this.scrapBooksService.UpdateAsync(id, input);
             return this.RedirectToAction("ScrapBooks");
         }
     }

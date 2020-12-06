@@ -92,6 +92,8 @@
                 Name = scrapBookDbModel.Name,
                 Description = scrapBookDbModel.Description,
                 CoverUrl = scrapBookDbModel.CoverUlr,
+                CategoryId = scrapBookDbModel.CategoryId,
+                Visibility = scrapBookDbModel.Visibility,
             };
 
             return viewModel;
@@ -117,6 +119,18 @@
             };
 
             return viewModel;
+        }
+
+        public async Task UpdateAsync(int id, EditScrapBookInputModel input)
+        {
+            var scrapBook = this.scrapBooksRepository.All().FirstOrDefault(x => x.Id == id);
+            scrapBook.Name = input.Name;
+            scrapBook.Description = input.Description;
+            scrapBook.CoverUlr = input.CoverUrl;
+            scrapBook.CategoryId = input.CategoryId;
+            scrapBook.Visibility = input.Visibility;
+
+            await this.scrapBooksRepository.SaveChangesAsync();
         }
     }
 }

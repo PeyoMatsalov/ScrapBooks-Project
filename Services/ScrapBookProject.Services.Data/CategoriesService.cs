@@ -31,6 +31,7 @@
                     Name = x.Name,
                     Description = x.Description,
                     ImageUrl = x.ImageUrl,
+                    ScrapBooksCount = this.scrapBooksRepository.All().Where(y => y.CategoryId == x.Id && y.Visibility == "Public").Count(),
                 }).ToList();
         }
 

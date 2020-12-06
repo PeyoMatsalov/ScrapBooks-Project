@@ -1,0 +1,115 @@
+﻿@model ScrapBookProject.Web.ViewModels.ScrapBooks.EditScrapBookInputModel
+@{
+    this.ViewData["Title"] = "Edit your ScrapBook";
+}
+<h1 class="text-center">Currently edditing: @Model.Name</h1>
+
+
+<form method="post" class="col-md-6 offset-md-3">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="align-content-md-center justify-content-md-center offset-2">
+        <img src="" alt="Alternate Text" width="350" height="560" />
+    </div>
+    <hr>
+    <div>
+        <h6>Please choose a cover for your book. You could also use your own cover if you provide a link by clicking on Custom.</h6>
+    </div>
+    <div>
+        <input class="CoverRadioButtons" id="CoverBlue" type="radio" asp-for="CoverUrl" value="/img/BookCoverBlue.jpg" />Blue<br />
+    </div>
+    <div>
+        <input class="CoverRadioButtons" id="CoverGreen" type="radio" asp-for="CoverUrl" value="/img/BookCoverGreen.jpg" />Green<br />
+    </div>
+    <div>
+        <input class="CoverRadioButtons" id="CoverOrange" type="radio" asp-for="CoverUrl" value="/img/BookCoverOrange.jpg" />Orange<br />
+    </div>
+    <div>
+        <input class="CoverRadioButtons" id="CoverPurple" type="radio" asp-for="CoverUrl" value="/img/BookCoverPurple.jpg" />Purple<br />
+    </div>
+    <div>
+        <input class="CoverRadioButtons" id="CoverRed" type="radio" asp-for="CoverUrl" value="/img/BookCoverRed.jpg" />Red<br />
+    </div>
+    <div>
+        <input id="CustomImgRadio" type="radio" />Custom<br />
+    </div>
+    <div class="form-group">
+        <input asp-for="CoverUrl" class="form-control CustomImg" placeholder="Enter your custom URL here." />
+        <span asp-validation-for="CoverUrl" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryId">Category</label>
+        <select asp-for="CategoryId" asp-items="Model.Categories.Select(x => new SelectListItem(x.Name,x.Id.ToString()))" class="form-control"></select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+    <div>
+        <h6>Would you like your scrapbook to be visible to everyone or only you?</h6>
+    </div>
+
+    <div>
+        <input type="radio" asp-for="Visibility" value="Private" />Only me<br />
+    </div>
+    <div>
+        <input type="radio" asp-for="Visibility" value="Public" />Everyone<br />
+    </div>
+    <span asp-validation-for="Visibility" class="text-danger"></span>
+    <div class="offset-5">
+        <button type="submit" class="btn btn-outline-primary btn-pill">Done!</button>
+    </div>
+</form>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("img").hide();
+            $(".CustomImg").hide();
+            $("#CoverBlue").click(function () {
+                $("img").slideDown();
+                $("img").attr("src", "/img/BookCoverBlue.jpg");
+                $(".CustomImg").val("");
+                $("#CustomImgRadio").prop("checked", false);
+            });
+            $("#CoverRed").click(function () {
+                $("img").slideDown();
+                $("img").attr("src", "/img/BookCoverRed.jpg");
+                $(".CustomImg").val("");
+                $("#CustomImgRadio").prop("checked", false);
+            });
+            $("#CoverGreen").click(function () {
+                $("img").slideDown();
+                $("img").attr("src", "/img/BookCoverGreen.jpg");
+                $(".CustomImg").val("");
+                $("#CustomImgRadio").prop("checked", false);
+            });
+            $("#CoverPurple").click(function () {
+                $("img").slideDown();
+                $("img").attr("src", "/img/BookCoverPurple.jpg");
+                $(".CustomImg").val("");
+                $("#CustomImgRadio").prop("checked", false);
+            });
+            $("#CoverOrange").click(function () {
+                $("img").slideDown();
+                $("img").attr("src", "/img/BookCoverOrange.jpg");
+                $(".CustomImg").val("");
+                $("#CustomImgRadio").prop("checked", false);
+            });
+            $("#CustomImgRadio").click(function () {
+                $("img").slideUp();
+                $(".CustomImg").slideDown();
+                $(".CoverRadioButtons").prop("checked", false);
+            });
+            $(".CustomImg").click(function () {
+                $(".CoverRadioButtons").prop("checked", false);
+            });
+        });
+    </script>
+}

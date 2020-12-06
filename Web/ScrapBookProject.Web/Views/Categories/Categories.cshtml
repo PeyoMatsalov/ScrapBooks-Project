@@ -11,7 +11,7 @@
                 <img class="mr-3" src="@category.ImageUrl" width="150" alt="@category.Name">
                 <div class="media-body">
                     <h5 class="mt-0"><a asp-controller="Categories" asp-action="Category" asp-route-Id="@category.Id">@category.Name</a></h5>
-                     @category.Description
+                    Number of books: @category.ScrapBooksCount
                 </div>
             </div>
         }
