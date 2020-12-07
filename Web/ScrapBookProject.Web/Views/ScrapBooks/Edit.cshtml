@@ -5,14 +5,14 @@
 <h1 class="text-center">Currently edditing: @Model.Name</h1>
 
 
-<form method="post" class="col-md-6 offset-md-3">
+<form method="post" id="editForm" class="col-md-6 offset-md-3">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="align-content-md-center justify-content-md-center offset-2">
         <img src="" alt="Alternate Text" width="350" height="560" />
     </div>
     <hr>
     <div>
-        <h6>Please choose a cover for your book. You could also use your own cover if you provide a link by clicking on Custom.</h6>
+        <h6>ScrapBook cover</h6>
     </div>
     <div>
         <input class="CoverRadioButtons" id="CoverBlue" type="radio" asp-for="CoverUrl" value="/img/BookCoverBlue.jpg" />Blue<br />
@@ -62,10 +62,32 @@
         <input type="radio" asp-for="Visibility" value="Public" />Everyone<br />
     </div>
     <span asp-validation-for="Visibility" class="text-danger"></span>
-    <div class="offset-5">
-        <button type="submit" class="btn btn-outline-primary btn-pill">Done!</button>
-    </div>
 </form>
+
+<div class="text-center">
+    <button type="submit" class="btn btn-outline-primary btn-pill" data-toggle="modal" data-target="#editModal">Save changes</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm Edit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Do you confirm these changes?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No.</button>
+                <button type="button" class="btn btn-primary" onclick="editForm.submit()">Yes.</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section Scripts{
     <script>
@@ -105,6 +127,7 @@
             $("#CustomImgRadio").click(function () {
                 $("img").slideUp();
                 $(".CustomImg").slideDown();
+                $(".CustomImg").val("");
                 $(".CoverRadioButtons").prop("checked", false);
             });
             $(".CustomImg").click(function () {

@@ -11,7 +11,7 @@
                 <hr />
                 <p class="card-text">@Model.Description</p>
                 <hr />
-                <div class="row">
+                <div class="row align-items-end">
                     <div class="col-3">
                         <p class="card-text"><small class="text-muted">Created on: @Model.CreateTime.ToString("MM/dd/yy")</small></p>
                     </div>
@@ -21,7 +21,12 @@
                     <div class="col-3">
                         <p class="card-text "><small class="text-muted">Number of Pages: @Model.PagesCount</small></p>
                     </div>
-
+                    <div class="col-3">
+                        <p class="card-text "><small class="text-muted">CategoryId: @Model.CategoryId</small></p>
+                    </div>
+                </div>
+                <div class="row align-items-end">
+                    <a class="btn btn-light" asp-controller="ScrapBooks" asp-action="Details" asp-route-Id="@Model.Id">Read</a>
                 </div>
             </div>
         </div>
