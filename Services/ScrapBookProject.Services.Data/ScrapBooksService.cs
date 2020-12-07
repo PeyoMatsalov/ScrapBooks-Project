@@ -74,6 +74,7 @@
                     Description = scrapBookDbModel.Description,
                     CoverUrl = scrapBookDbModel.CoverUlr,
                     IsDeleted = scrapBookDbModel.IsDeleted,
+                    CreateTime = scrapBookDbModel.CreatedOn,
                 };
 
                 resultScrapBooks.Add(scrapBook);
@@ -94,6 +95,8 @@
                 CoverUrl = scrapBookDbModel.CoverUlr,
                 CategoryId = scrapBookDbModel.CategoryId,
                 Visibility = scrapBookDbModel.Visibility,
+                CreateTime = scrapBookDbModel.CreatedOn,
+                PagesCount = this.pagesRepository.All().Where(x => x.ScrapBookId == scrapBookId).Count() - 1,
             };
 
             return viewModel;
@@ -113,7 +116,7 @@
                 CoverUrl = scrapBookDbModel.CoverUlr,
                 Pages = pagesDbModel.Select(x => new PageViewModel
                 {
-                    Number = x.PageNumber,
+                    PageNumber = x.PageNumber,
                     Content = x.Content,
                 }).ToList(),
             };

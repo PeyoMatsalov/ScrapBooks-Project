@@ -1,5 +1,6 @@
 ﻿namespace ScrapBookProject.Web.ViewModels.ScrapBooks
 {
+    using System;
     using System.Collections.Generic;
 
     using ScrapBookProject.Web.ViewModels.Categories;
@@ -18,7 +19,11 @@
 
         public bool IsDeleted { get; set; }
 
+        public DateTime CreateTime{ get; set; }
+
         public string Visibility { get; set; }
+
+        public int PagesCount { get; set; }
 
         public int CategoryId { get; set; }
 

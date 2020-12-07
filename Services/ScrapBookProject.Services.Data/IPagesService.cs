@@ -11,5 +11,9 @@
         Task CreateAsync(CreatePageInputModel input, int bookId);
 
         ICollection<PageViewModel> GetPagesByBookId(int bookId);
+
+        int GetPagesCountByBookId(int bookId);
+
+        IEnumerable<PageViewModel> GetCurrentPages(int bookId, int page, int pagesPerPage);
     }
 }

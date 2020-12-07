@@ -13,8 +13,8 @@
         public string Name { get; set; }
 
         [Required(ErrorMessage = "The description is required.")]
-        [MinLength(10, ErrorMessage = "The description must be between 10 and 200 characters.")]
-        [MaxLength(200, ErrorMessage = "The description must be between 10 and 200 characters.")]
+        [MinLength(10, ErrorMessage = "The description must be between 10 and 500 characters.")]
+        [MaxLength(500, ErrorMessage = "The description must be between 10 and 500 characters.")]
         public string Description { get; set; }
 
         public string CoverUrl { get; set; }

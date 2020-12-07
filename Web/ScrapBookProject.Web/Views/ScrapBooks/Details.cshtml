@@ -1,0 +1,29 @@
+﻿@model ScrapBookProject.Web.ViewModels.ScrapBooks.ScrapBookViewModel
+
+<div class="card mb-4 ml-4 no-hover" style="max-width: 1100px;">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="@Model.CoverUrl" class="img-thumbnail" alt="book cover">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title text-center">@Model.Name</h5>
+                <hr />
+                <p class="card-text">@Model.Description</p>
+                <hr />
+                <div class="row">
+                    <div class="col-3">
+                        <p class="card-text"><small class="text-muted">Created on: @Model.CreateTime.ToString("MM/dd/yy")</small></p>
+                    </div>
+                    <div class="col-3">
+                        <p class="card-text "><small class="text-muted">Visibility: @Model.Visibility</small></p>
+                    </div>
+                    <div class="col-3">
+                        <p class="card-text "><small class="text-muted">Number of Pages: @Model.PagesCount</small></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

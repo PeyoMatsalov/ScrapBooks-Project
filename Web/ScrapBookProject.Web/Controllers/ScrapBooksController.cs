@@ -1,10 +1,12 @@
 ﻿namespace ScrapBookProject.Web.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using ScrapBookProject.Data.Common;
@@ -111,6 +113,13 @@
 
             await this.scrapBooksService.UpdateAsync(id, input);
             return this.RedirectToAction("ScrapBooks");
+        }
+
+        public IActionResult Details(int id)
+        {
+            this.Response.Cookies.Append("BookId", id.ToString(), new CookieOptions() { Expires = DateTimeOffset.Now.AddHours(1), SameSite = SameSiteMode.Strict });
+            var viewModel = this.scrapBooksService.GetScrapBookById(id);
+            return this.View(viewModel);
         }
     }
 }

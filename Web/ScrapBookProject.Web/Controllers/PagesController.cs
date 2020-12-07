@@ -29,6 +29,8 @@
 
         public IActionResult Pages(int id)
         {
+            const int PagesPerPage = 2;
+
             this.Response.Cookies.Append("BookId", id.ToString(), new CookieOptions() { Expires = DateTimeOffset.Now.AddHours(1), SameSite = SameSiteMode.Strict });
             var scrapBook = this.scrapBooksService.GetScrapBookWithPagesById(id);
             var viewModel = new ScrapBookPagesViewModel()
@@ -36,8 +38,17 @@
                 Name = scrapBook.Name,
                 CreatorId = scrapBook.CreatorId,
                 Id = scrapBook.Id,
-                Pages = scrapBook.Pages,
+                Pages = scrapBook.Pages.Select(x => new PageViewModel
+                {
+                    PageNumber = x.PageNumber,
+                    Content = x.Content,
+                    TotalBookPagesCount = this.pagesService.GetPagesCountByBookId(id),
+
+                }).ToList(),
             };
+
+            var viewModelPages = this.pagesService.GetCurrentPages(int.Parse(this.Request.Cookies["BookId"]), id, PagesPerPage);
+
             return this.View(viewModel);
         }
 

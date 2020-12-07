@@ -48,13 +48,34 @@
                 {
                     BookId = bookId,
                     Content = book.Content,
-                    Number = book.PageNumber,
+                    PageNumber = book.PageNumber,
                 };
 
                 pages.Add(page);
             }
 
             return pages;
+        }
+
+        public int GetPagesCountByBookId(int bookId)
+        {
+            return this.pagesRepository.All().Where(x => x.Id == bookId).Count();
+        }
+
+        public IEnumerable<PageViewModel> GetCurrentPages(int bookId, int page, int pagesPerPage)
+        {
+            return this.pagesRepository.All()
+                .Where(x => x.ScrapBookId == bookId)
+                .OrderBy(x => x.PageNumber)
+                .Skip((page - 1) * pagesPerPage)
+                .Take(pagesPerPage)
+                .Select(x => new PageViewModel
+                {
+                    BookName = x.ScrapBook.Name,
+                    BookId = x.ScrapBookId,
+                    PageNumber = x.PageNumber,
+                    Content = x.Content,
+                });
         }
     }
 }
