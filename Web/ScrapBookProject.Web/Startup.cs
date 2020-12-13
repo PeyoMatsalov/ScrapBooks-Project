@@ -50,7 +50,8 @@
                 options =>
                     {
                         options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-                    }).AddRazorRuntimeCompilation();
+                    }).AddRazorRuntimeCompilation()
+                    .AddSessionStateTempDataProvider();
             services.AddRazorPages();
             services.AddDatabaseDeveloperPageExceptionFilter();
 

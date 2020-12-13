@@ -37,14 +37,6 @@
                 CategoryId = input.CategoryId,
             };
 
-            var page = new Page
-            {
-                PageNumber = 0,
-                Content = "Page 0",
-                ImageUrl = string.Empty,
-            };
-
-            scrapBook.Pages.Add(page);
             user.ScrapBooks.Add(scrapBook);
 
             await this.scrapBooksRepository.AddAsync(scrapBook);
@@ -96,7 +88,7 @@
                 CategoryId = scrapBookDbModel.CategoryId,
                 Visibility = scrapBookDbModel.Visibility,
                 CreateTime = scrapBookDbModel.CreatedOn,
-                PagesCount = this.pagesRepository.All().Where(x => x.ScrapBookId == scrapBookId).Count() - 1,
+                PagesCount = this.pagesRepository.All().Where(x => x.ScrapBookId == scrapBookId).Count(),
             };
 
             return viewModel;
@@ -114,6 +106,7 @@
                 Name = scrapBookDbModel.Name,
                 Description = scrapBookDbModel.Description,
                 CoverUrl = scrapBookDbModel.CoverUlr,
+                TotalBookPagesCount = this.pagesRepository.All().Where(x => x.ScrapBookId == scrapBookId).Count(),
                 Pages = pagesDbModel.Select(x => new PageViewModel
                 {
                     PageNumber = x.PageNumber,

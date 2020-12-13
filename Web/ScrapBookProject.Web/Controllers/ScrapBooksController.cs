@@ -80,6 +80,7 @@
 
         public IActionResult Edit(int id)
         {
+
             var scrapBook = this.scrapBooksService.GetScrapBookById(id);
             var viewModel = new EditScrapBookInputModel
             {
@@ -117,7 +118,7 @@
 
         public IActionResult Details(int id)
         {
-            this.Response.Cookies.Append("BookId", id.ToString(), new CookieOptions() { Expires = DateTimeOffset.Now.AddHours(1), SameSite = SameSiteMode.Strict });
+            this.TempData["bookId"] = id;
             var viewModel = this.scrapBooksService.GetScrapBookById(id);
             return this.View(viewModel);
         }

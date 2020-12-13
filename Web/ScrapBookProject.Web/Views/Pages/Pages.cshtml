@@ -13,7 +13,7 @@
     <div class="row align-items-start">
         <div class="col">
             <div class="container">
-                @if (Model.Pages.Count == 1)
+                @if (Model.Pages.Count <= 0)
                 {
                     <h3>It looks like your scrap book is empty. Click the button to create your first page for it.</h3>
                     if (currentUserID == Model.CreatorId)
@@ -27,31 +27,25 @@
                 {
                     <div class="container">
                         <div class="row" style="height: 500px">
-                            <div class="col">
-                                @Html.Raw(Model.Pages.Skip(1).FirstOrDefault().SanitizedContent)
-                            </div>
-                            <div class="col">
-                                @Html.Raw(Model.Pages.FirstOrDefault().SanitizedContent)
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-center" id="btnPrevious">
-                                <a class="btn btn-outline-primary" asp-controller="Pages" asp-action="Page" asp-route-id="@@Model.PreviousPageNumber"> Click to add a page </a>
-                            </div>
-                            @if (currentUserID == Model.CreatorId)
+                            @foreach (var page in Model.Pages)
                             {
-                                <div>
-                                    <form method="post">
-                                        <div class="col-md-auto text-center">
-                                            <a class="btn btn-outline-primary" asp-controller="Pages" asp-action="AddPage"> Click to add a page </a>
-                                        </div>
-                                    </form>
+                                <div class="col">
+                                    @Html.Raw(page.PageNumber)
+                                    @Html.Raw(page.SanitizedContent)
                                 </div>
                             }
-                            <div class="col text-center" id="btnNext">
-                                <a class="btn btn-outline-primary" asp-controller="Pages" asp-action="Page" asp-route-id="@@Model.NextPageNumber"> Click to add a page </a>
-                            </div>
                         </div>
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item col-md-3">
+                                <a class="page-link  @if (!Model.HasPreviousPage) { <text>disabled</text> } btn btn-dark text-white" asp-action="Pages" asp-route-id="@Model.PreviousPageNumber">Previous</a>
+                            </li>
+                            <li class="page-item col-md-3" aria-current="page">
+                                    <a class="page-link btn btn-primary text-white" asp-controller="Pages" asp-action="AddPage"> Click to add a page </a>
+                            </li>
+                            <li class="page-item  col-md-3">
+                                <a class="page-link @if (Model.NextPageNumber < Model.PageNumber) { <text>disabled</text> } btn btn-dark text-white " asp-action="Pages" asp-route-id="@Model.NextPageNumber">Next</a>
+                            </li>
+                        </ul>
                     </div>
                 }
             </div>

@@ -27,45 +27,36 @@
             this.userManager = userManager;
         }
 
-        public IActionResult Pages(int id)
+        public IActionResult Pages(int id = 1)
         {
-            const int PagesPerPage = 2;
-
-            this.Response.Cookies.Append("BookId", id.ToString(), new CookieOptions() { Expires = DateTimeOffset.Now.AddHours(1), SameSite = SameSiteMode.Strict });
-            var scrapBook = this.scrapBooksService.GetScrapBookWithPagesById(id);
+            int bookId = (int)this.TempData.Peek("bookId");
+            var scrapBook = this.scrapBooksService.GetScrapBookWithPagesById(bookId);
             var viewModel = new ScrapBookPagesViewModel()
             {
                 Name = scrapBook.Name,
                 CreatorId = scrapBook.CreatorId,
                 Id = scrapBook.Id,
-                Pages = scrapBook.Pages.Select(x => new PageViewModel
-                {
-                    PageNumber = x.PageNumber,
-                    Content = x.Content,
-                    TotalBookPagesCount = this.pagesService.GetPagesCountByBookId(id),
-
-                }).ToList(),
+                PageNumber = id,
+                PagesPerPage = 2,
+                TotalBookPagesCount = this.pagesService.GetPagesCountByBookId(bookId),
+                Pages = this.pagesService.GetCurrentPages(bookId, id, 2).ToList(),
             };
-
-            var viewModelPages = this.pagesService.GetCurrentPages(int.Parse(this.Request.Cookies["BookId"]), id, PagesPerPage);
 
             return this.View(viewModel);
         }
 
         public IActionResult AddPage()
         {
-            this.ViewData["BookId"] = this.Request.Cookies["BookId"];
-
             return this.View();
         }
 
         [HttpPost]
         public async Task<IActionResult> AddPage(CreatePageInputModel input)
         {
-            int bookId = int.Parse(this.Request.Cookies["BookId"]);
+            int bookId = int.Parse(this.TempData["bookId"].ToString());
 
             await this.pagesService.CreateAsync(input, bookId);
-            return this.Redirect($"/Pages/Pages/{bookId}");
+            return this.RedirectToAction("Pages");
         }
     }
 }

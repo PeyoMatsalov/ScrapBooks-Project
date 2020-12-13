@@ -25,7 +25,7 @@
         {
             var pages = this.pagesRepository.All().Where(x => x.ScrapBookId == bookId).ToList();
 
-            int pageNumber = pages.Last().PageNumber;
+            int pageNumber = pages.Any() ? pages.Last().PageNumber : 0;
 
             Page page = new Page
             {
@@ -62,12 +62,12 @@
             return this.pagesRepository.All().Where(x => x.Id == bookId).Count();
         }
 
-        public IEnumerable<PageViewModel> GetCurrentPages(int bookId, int page, int pagesPerPage)
+        public IEnumerable<PageViewModel> GetCurrentPages(int bookId, int pageNumber, int pagesPerPage)
         {
             return this.pagesRepository.All()
                 .Where(x => x.ScrapBookId == bookId)
                 .OrderBy(x => x.PageNumber)
-                .Skip((page - 1) * pagesPerPage)
+                .Skip((pageNumber - 1) * pagesPerPage)
                 .Take(pagesPerPage)
                 .Select(x => new PageViewModel
                 {
