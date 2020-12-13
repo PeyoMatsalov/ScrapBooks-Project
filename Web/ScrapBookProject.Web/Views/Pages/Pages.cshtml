@@ -1,6 +1,6 @@
 ﻿@model ScrapBookProject.Web.ViewModels.Pages.ScrapBookPagesViewModel
 @using System.Security.Claims
-@{ 
+@{
     ClaimsPrincipal currentUser = this.User;
     var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
 
@@ -13,7 +13,7 @@
     <div class="row align-items-start">
         <div class="col">
             <div class="container">
-                @if (Model.Pages.Count <= 0)
+                @if (Model.TotalBookPagesCount <= 0)
                 {
                     <h3>It looks like your scrap book is empty. Click the button to create your first page for it.</h3>
                     if (currentUserID == Model.CreatorId)
@@ -31,22 +31,26 @@
                             {
                                 <div class="col">
                                     @Html.Raw(page.PageNumber)
-                                    @Html.Raw(page.SanitizedContent)
+                                    <hr>
+                                        @Html.Raw(page.SanitizedContent)
+                                    
                                 </div>
                             }
                         </div>
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item col-md-3">
-                                <a class="page-link  @if (!Model.HasPreviousPage) { <text>disabled</text> } btn btn-dark text-white" asp-action="Pages" asp-route-id="@Model.PreviousPageNumber">Previous</a>
-                            </li>
-                            <li class="page-item col-md-3" aria-current="page">
-                                    <a class="page-link btn btn-primary text-white" asp-controller="Pages" asp-action="AddPage"> Click to add a page </a>
-                            </li>
-                            <li class="page-item  col-md-3">
-                                <a class="page-link @if (Model.NextPageNumber < Model.PageNumber) { <text>disabled</text> } btn btn-dark text-white " asp-action="Pages" asp-route-id="@Model.NextPageNumber">Next</a>
-                            </li>
-                        </ul>
+                        <hr>
+
                     </div>
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item col-md-3">
+                            <a class="page-link  @if (!Model.HasPreviousPage) { <text>disabled</text> } btn btn-dark text-white" asp-action="Pages" asp-route-id="@Model.PreviousPageNumber">Previous</a>
+                        </li>
+                        <li class="page-item col-md-3" aria-current="page">
+                            <a class="page-link btn btn-primary text-white" asp-controller="Pages" asp-action="AddPage"> Click to add a page </a>
+                        </li>
+                        <li class="page-item  col-md-3">
+                            <a class="page-link @if (Model.NextPageNumber < Model.TotalBookPagesCount) { <text>disabled</text> } btn btn-dark text-white " asp-action="Pages" asp-route-id="@Model.NextPageNumber">Next</a>
+                        </li>
+                    </ul>
                 }
             </div>
         </div>

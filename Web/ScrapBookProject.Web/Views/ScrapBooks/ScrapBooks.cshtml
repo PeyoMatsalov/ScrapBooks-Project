@@ -23,10 +23,8 @@
                             <img alt="book cover"
                                  src="@book.CoverUrl" />
                         </div>
-                        <div class="rowButtons">
-                            <a class="btn btn-light" asp-controller="ScrapBooks" asp-action="Details" asp-route-Id="@book.Id"> View </a> |
-                            <a class="btn btn-info" asp-controller="ScrapBooks" asp-action="Edit" asp-route-Id="@book.Id"> Edit </a> |
-                            <a class="btn btn-danger" asp-controller="ScrapBooks" asp-action="Delete" asp-route-Id="@book.Id"> Delete </a>
+                        <div class="rowButtons offset-2">
+                            <a class="btn btn-light" asp-controller="ScrapBooks" asp-action="Details" asp-route-Id="@book.Id"> View </a>
                         </div>
                     </div>
                 </div>

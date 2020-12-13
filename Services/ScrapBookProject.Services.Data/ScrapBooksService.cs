@@ -16,12 +16,18 @@
         private readonly IDeletableEntityRepository<ScrapBook> scrapBooksRepository;
         private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
         private readonly IDeletableEntityRepository<Page> pagesRepository;
+        private readonly IDeletableEntityRepository<Category> categoriesRepository;
 
-        public ScrapBooksService(IDeletableEntityRepository<ScrapBook> scrapBooksRepository, IDeletableEntityRepository<ApplicationUser> usersRepository, IDeletableEntityRepository<Page> pagesRepository)
+        public ScrapBooksService(
+            IDeletableEntityRepository<ScrapBook> scrapBooksRepository,
+            IDeletableEntityRepository<ApplicationUser> usersRepository,
+            IDeletableEntityRepository<Page> pagesRepository,
+            IDeletableEntityRepository<Category> categoriesRepository)
         {
             this.scrapBooksRepository = scrapBooksRepository;
             this.usersRepository = usersRepository;
             this.pagesRepository = pagesRepository;
+            this.categoriesRepository = categoriesRepository;
         }
 
         public async Task CreateAsync(CreateScrapBookInputModel input, string userId)
@@ -86,6 +92,7 @@
                 Description = scrapBookDbModel.Description,
                 CoverUrl = scrapBookDbModel.CoverUlr,
                 CategoryId = scrapBookDbModel.CategoryId,
+                CategoryName = this.categoriesRepository.All().Where(x => x.Id == scrapBookDbModel.CategoryId).FirstOrDefault().Name,
                 Visibility = scrapBookDbModel.Visibility,
                 CreateTime = scrapBookDbModel.CreatedOn,
                 PagesCount = this.pagesRepository.All().Where(x => x.ScrapBookId == scrapBookId).Count(),
