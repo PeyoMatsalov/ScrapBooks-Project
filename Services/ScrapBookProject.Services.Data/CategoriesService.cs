@@ -35,6 +35,7 @@
                 }).ToList();
         }
 
+
         public ICollection<ScrapBookViewModel> GetAllPublicScrapBooks()
         {
             var scrapBooksDb = this.scrapBooksRepository.All().Where(x => x.Visibility == "Public" && x.IsDeleted == false).ToList();

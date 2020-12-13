@@ -21,6 +21,7 @@
         {
             if (!dbContext.Users.Any())
             {
+
                 var user = new ApplicationUser
                 {
                     UserName = "Peyo.IT@mail.com",
