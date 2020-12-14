@@ -1,15 +1,11 @@
 ﻿namespace ScrapBookProject.Web.Controllers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using ScrapBookProject.Data.Common;
     using ScrapBookProject.Data.Models;
     using ScrapBookProject.Services.Data;
     using ScrapBookProject.Web.ViewModels.Categories;
@@ -80,7 +76,6 @@
 
         public IActionResult Edit(int id)
         {
-
             var scrapBook = this.scrapBooksService.GetScrapBookById(id);
             var viewModel = new EditScrapBookInputModel
             {

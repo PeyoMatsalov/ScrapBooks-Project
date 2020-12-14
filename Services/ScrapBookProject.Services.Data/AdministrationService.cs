@@ -49,5 +49,14 @@
                     DateCreated = x.CreatedOn.ToString("dd-MM-y"),
                 }).ToList();
         }
+
+        public async Task UpdateCategoryAsync(EditCategoryInputModel input)
+        {
+            var category = this.categoriesRepository.All().FirstOrDefault(x => x.Id == input.Id);
+            category.Name = input.Name;
+            category.ImageUrl = input.ImgUrl;
+
+            await this.categoriesRepository.SaveChangesAsync();
+        }
     }
 }

@@ -21,7 +21,7 @@
                 <td>@category.DateCreated</td>
                 <td>@category.BooksCount</td>
                 <td>
-                    <a class="btn btn-warning" asp-area="Administration" asp-controller="Administration" asp-action="Edit" asp-route-Id=""> Edit </a>
+                    <a class="btn btn-warning" asp-area="Administration" asp-controller="Administration" asp-action="EditCategory" asp-route-Id="@category.CategoryId"> Edit </a>
                     <a class="btn btn-danger" asp-area="Administration" asp-controller="Administration" asp-action="Delete" asp-route-Id="@category.CategoryId"> Delete </a>
                 </td>
             </tr>

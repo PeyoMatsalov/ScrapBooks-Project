@@ -11,6 +11,8 @@
 
         ICollection<ManageCategoriesViewModel> GetAllCategories();
 
+        Task UpdateCategoryAsync(EditCategoryInputModel input);
+
         Task DeleteCategory(int categoryId);
     }
 }

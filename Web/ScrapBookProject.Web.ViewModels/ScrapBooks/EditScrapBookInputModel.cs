@@ -1,9 +1,7 @@
 ﻿namespace ScrapBookProject.Web.ViewModels.ScrapBooks
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Text;
 
     using ScrapBookProject.Web.ViewModels.Categories;
 

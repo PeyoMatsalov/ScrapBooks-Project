@@ -58,6 +58,11 @@
             return resultScrapBooks;
         }
 
+        public Category GetCategoryById(int id)
+        {
+            return this.categoriesRepository.All().FirstOrDefault(x => x.Id == id);
+        }
+
         public ICollection<ScrapBookViewModel> GetScrapBooksByCategoryId(int categoryId)
         {
             var scrapBooks = this.scrapBooksRepository.All()
