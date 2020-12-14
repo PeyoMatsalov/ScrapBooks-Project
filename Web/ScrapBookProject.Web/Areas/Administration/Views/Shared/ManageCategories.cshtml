@@ -22,7 +22,10 @@
                 <td>@category.BooksCount</td>
                 <td>
                     <a class="btn btn-warning" asp-area="Administration" asp-controller="Administration" asp-action="EditCategory" asp-route-Id="@category.CategoryId"> Edit </a>
-                    <a class="btn btn-danger" asp-area="Administration" asp-controller="Administration" asp-action="DeleteCategory" asp-route-Id="@category.CategoryId"> Delete </a>
+
+                    <form method="post">
+                        <button class="btn btn-danger" asp-area="Administration" asp-controller="Administration" asp-action="DeleteCategory" asp-route-Id="@category.CategoryId" type="submit">Delete</button>
+                    </form>
                 </td>
             </tr>
             rowNumber++;

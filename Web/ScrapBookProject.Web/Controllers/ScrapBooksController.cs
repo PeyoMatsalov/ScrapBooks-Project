@@ -79,6 +79,7 @@
             var scrapBook = this.scrapBooksService.GetScrapBookById(id);
             var viewModel = new EditScrapBookInputModel
             {
+                Id = id,
                 Name = scrapBook.Name,
                 Description = scrapBook.Description,
                 CoverUrl = scrapBook.CoverUrl,

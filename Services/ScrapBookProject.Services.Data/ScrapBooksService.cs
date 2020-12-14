@@ -60,6 +60,7 @@
         public ICollection<ScrapBookViewModel> GetAllScrapBooksForUser(string userId)
         {
             var scrapBooksDb = this.scrapBooksRepository.All().Where(x => x.CreatorId == userId).ToList();
+            var userDbModel = this.usersRepository.All().FirstOrDefault(x => x.Id == userId);
             var resultScrapBooks = new List<ScrapBookViewModel>();
 
             foreach (var scrapBookDbModel in scrapBooksDb)
@@ -68,6 +69,7 @@
                 {
                     Id = scrapBookDbModel.Id,
                     CreatorId = scrapBookDbModel.CreatorId,
+                    CreatorName = userDbModel.Email,
                     Name = scrapBookDbModel.Name,
                     Description = scrapBookDbModel.Description,
                     CoverUrl = scrapBookDbModel.CoverUlr,
@@ -84,6 +86,7 @@
         public ScrapBookViewModel GetScrapBookById(int scrapBookId)
         {
             var scrapBookDbModel = this.scrapBooksRepository.All().FirstOrDefault(x => x.Id == scrapBookId);
+            var userDbModel = this.usersRepository.All().FirstOrDefault(x => x.Id == scrapBookDbModel.CreatorId);
 
             var viewModel = new ScrapBookViewModel
             {
@@ -92,6 +95,7 @@
                 Description = scrapBookDbModel.Description,
                 CoverUrl = scrapBookDbModel.CoverUlr,
                 CategoryId = scrapBookDbModel.CategoryId,
+                CreatorName = userDbModel.Email,
                 CategoryName = this.categoriesRepository.All().Where(x => x.Id == scrapBookDbModel.CategoryId).FirstOrDefault().Name,
                 Visibility = scrapBookDbModel.Visibility,
                 CreateTime = scrapBookDbModel.CreatedOn,

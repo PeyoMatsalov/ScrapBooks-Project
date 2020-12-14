@@ -64,8 +64,15 @@
     <span asp-validation-for="Visibility" class="text-danger"></span>
 </form>
 
-<div class="text-center">
-    <button type="submit" class="btn btn-outline-primary btn-pill" data-toggle="modal" data-target="#editModal">Save changes</button>
+<div class="container">
+    <div class="row text-center">
+        <div class="col-md-5 text-md-right">
+            <a type="submit" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-outline-info btn-pill">Back</a>
+        </div>
+        <div class="text-center col-md-5">
+            <button type="submit" class="btn btn-outline-primary btn-pill" data-toggle="modal" data-target="#editModal">Save changes</button>
+        </div>
+    </div>
 </div>
 
 <!-- Modal -->

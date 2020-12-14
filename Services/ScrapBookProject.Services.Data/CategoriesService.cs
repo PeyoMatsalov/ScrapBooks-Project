@@ -1,9 +1,7 @@
 ﻿namespace ScrapBookProject.Services.Data
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
 
     using ScrapBookProject.Data.Common.Repositories;
     using ScrapBookProject.Data.Models;
@@ -29,12 +27,10 @@
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    Description = x.Description,
                     ImageUrl = x.ImageUrl,
                     ScrapBooksCount = this.scrapBooksRepository.All().Where(y => y.CategoryId == x.Id && y.Visibility == "Public").Count(),
                 }).ToList();
         }
-
 
         public ICollection<ScrapBookViewModel> GetAllPublicScrapBooks()
         {

@@ -77,6 +77,7 @@
             return this.RedirectToAction(nameof(this.ManageCategories));
         }
 
+        [HttpPost]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             await this.administrationSevice.DeleteCategoryAsync(id);

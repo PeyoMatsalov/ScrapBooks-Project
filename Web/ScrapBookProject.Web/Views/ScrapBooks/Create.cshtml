@@ -5,7 +5,7 @@
 <h1 class="text-center">Create a ScrapBook!</h1>
 
 
-<form method="post" id="createForm" class="col-md-6 offset-md-3">
+<form method="post" class="col-md-6 offset-md-3">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="align-content-md-center justify-content-md-center offset-2">
         <img src="" alt="Alternate Text" width="350" height="560" />
@@ -62,32 +62,21 @@
         <input type="radio" asp-for="Visibility" value="Public" />Everyone<br />
     </div>
     <span asp-validation-for="Visibility" class="text-danger"></span>
-</form>
-
-<div class="offset-5">
-    <button type="submit" class="btn btn-outline-primary btn-pill" data-toggle="modal" data-target="#createModal">Done!</button>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Confirm Edit</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-5 text-md-right">
+                <a type="submit" asp-action="ScrapBooks" class="btn btn-outline-primary btn-pill">Back</a>
             </div>
-            <div class="modal-body">
-                Are you ready to add your SrapBook?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">I need to change something.</button>
-                <button type="button" class="btn btn-primary" onclick="createForm.submit()">Yes!</button>
+            <div class="col-5">
+                <button type="submit" onclick="" class="btn btn-outline-primary btn-pill">Done!</button>
             </div>
         </div>
     </div>
-</div>
+</form>
+
+
+
+
 
 @section Scripts{
     <script>
