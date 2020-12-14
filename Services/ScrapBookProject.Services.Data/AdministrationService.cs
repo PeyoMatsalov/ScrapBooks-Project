@@ -32,9 +32,12 @@
             await this.categoriesRepository.SaveChangesAsync();
         }
 
-        public Task DeleteCategory(int categoryId)
+        public async Task DeleteCategoryAsync(int categoryId)
         {
-            throw new NotImplementedException();
+            var category = this.categoriesRepository.All().FirstOrDefault(x => x.Id == categoryId);
+            category.IsDeleted = true;
+            this.categoriesRepository.Update(category);
+            await this.categoriesRepository.SaveChangesAsync();
         }
 
         public ICollection<ManageCategoriesViewModel> GetAllCategories()

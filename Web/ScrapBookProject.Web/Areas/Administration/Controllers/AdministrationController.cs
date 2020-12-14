@@ -76,5 +76,12 @@
             this.administrationSevice.UpdateCategoryAsync(input);
             return this.RedirectToAction(nameof(this.ManageCategories));
         }
+
+        public async Task<IActionResult> DeleteCategory(int id)
+        {
+            await this.administrationSevice.DeleteCategoryAsync(id);
+
+            return this.RedirectToAction(nameof(this.ManageCategories));
+        }
     }
 }

@@ -13,6 +13,6 @@
 
         Task UpdateCategoryAsync(EditCategoryInputModel input);
 
-        Task DeleteCategory(int categoryId);
+        Task DeleteCategoryAsync(int categoryId);
     }
 }
