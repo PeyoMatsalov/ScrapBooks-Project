@@ -67,11 +67,12 @@
             return this.Redirect("/ScrapBooks/ScrapBooks");
         }
 
+        [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
             await this.scrapBooksService.DeleteScrapBookAsync(id);
 
-            return this.RedirectToAction("ScrapBooks");
+            return this.RedirectToAction(nameof(this.ScrapBooks));
         }
 
         public IActionResult Edit(int id)

@@ -1,15 +1,10 @@
 ﻿namespace ScrapBookProject.Web.Controllers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using ScrapBookProject.Data.Models;
     using ScrapBookProject.Services.Data;
     using ScrapBookProject.Web.ViewModels.Pages;
 
@@ -18,13 +13,11 @@
     {
         private readonly IPagesService pagesService;
         private readonly IScrapBooksService scrapBooksService;
-        private readonly UserManager<ApplicationUser> userManager;
 
-        public PagesController(IPagesService pagesService, IScrapBooksService scrapBooksService, UserManager<ApplicationUser> userManager)
+        public PagesController(IPagesService pagesService, IScrapBooksService scrapBooksService)
         {
             this.pagesService = pagesService;
             this.scrapBooksService = scrapBooksService;
-            this.userManager = userManager;
         }
 
         public IActionResult Pages(int id = 1)

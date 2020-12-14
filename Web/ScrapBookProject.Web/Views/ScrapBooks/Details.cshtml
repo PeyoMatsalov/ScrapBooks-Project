@@ -1,4 +1,8 @@
 ﻿@model ScrapBookProject.Web.ViewModels.ScrapBooks.ScrapBookViewModel
+@using System.Security.Claims
+@{
+    var currentUserID = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+}
 
 <div class="card mb-4 ml-4 no-hover" style="max-width: 1100px;">
     <div class="row no-gutters">
@@ -35,12 +39,17 @@
                             <div class="col-md-4">
                                 <a class="btn btn-light" asp-controller="Pages" asp-action="Pages">Read</a>
                             </div>
-                            <div class="col-md-4">
-                                <a class="btn btn-info" asp-controller="ScrapBooks" asp-action="Edit" asp-route-id="@Model.Id"> Edit </a>
-                            </div>
-                            <div class="col-md-4">
-                                <a class="btn btn-danger" asp-controller="ScrapBooks" asp-action="Delete" asp-route-id="@Model.Id"> Delete </a>
-                            </div>
+                            @if (Model.CreatorId == currentUserID)
+                            {
+                                <div class="col-md-4">
+                                    <a class="btn btn-info" asp-controller="ScrapBooks" asp-action="Edit" asp-route-id="@Model.Id"> Edit </a>
+                                </div>
+                                <form method="post">
+                                    <div class="col-md-4">
+                                        <button class="btn btn-danger" asp-controller="ScrapBooks" asp-action="Delete" asp-route-Id="@Model.Id" type="submit">Delete</button>
+                                    </div>
+                                </form>
+                            }
                         </div>
                     </div>
                 </div>

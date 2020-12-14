@@ -59,7 +59,7 @@
 
         public int GetPagesCountByBookId(int bookId)
         {
-            return this.pagesRepository.All().Where(x => x.Id == bookId).Count();
+            return this.pagesRepository.All().Where(x => x.ScrapBookId == bookId).Count();
         }
 
         public IEnumerable<PageViewModel> GetCurrentPages(int bookId, int pageNumber, int pagesPerPage)

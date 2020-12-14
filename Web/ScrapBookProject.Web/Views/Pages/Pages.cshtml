@@ -1,9 +1,7 @@
 ﻿@model ScrapBookProject.Web.ViewModels.Pages.ScrapBookPagesViewModel
 @using System.Security.Claims
 @{
-    ClaimsPrincipal currentUser = this.User;
-    var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
-
+    var currentUserID = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 }
 
 <div class="text-center">
@@ -15,9 +13,10 @@
             <div class="container">
                 @if (Model.TotalBookPagesCount <= 0)
                 {
-                    <h3>It looks like your scrap book is empty. Click the button to create your first page for it.</h3>
+                    <h3 class="text-center">It looks like your scrap book is empty.</h3>
                     if (currentUserID == Model.CreatorId)
                     {
+                        <h3 class="text-center">Click the button to create your first page for it.</h3>
                         <div class="col-md-auto text-center">
                             <a class="btn btn-outline-primary" asp-controller="Pages" asp-action="AddPage"> Click to add a page </a>
                         </div>
@@ -32,8 +31,8 @@
                                 <div class="col">
                                     @Html.Raw(page.PageNumber)
                                     <hr>
-                                        @Html.Raw(page.SanitizedContent)
-                                    
+                                    @Html.Raw(page.SanitizedContent)
+
                                 </div>
                             }
                         </div>
@@ -44,11 +43,14 @@
                         <li class="page-item col-md-3">
                             <a class="page-link  @if (!Model.HasPreviousPage) { <text>disabled</text> } btn btn-dark text-white" asp-action="Pages" asp-route-id="@Model.PreviousPageNumber">Previous</a>
                         </li>
-                        <li class="page-item col-md-3" aria-current="page">
-                            <a class="page-link btn btn-primary text-white" asp-controller="Pages" asp-action="AddPage"> Click to add a page </a>
-                        </li>
+                        @if (currentUserID == Model.CreatorId)
+                        {
+                            <li class="page-item col-md-3" aria-current="page">
+                                <a class="page-link btn btn-primary text-white" asp-controller="Pages" asp-action="AddPage"> Click to add a page </a>
+                            </li>
+                        }
                         <li class="page-item  col-md-3">
-                            <a class="page-link @if (Model.NextPageNumber < Model.TotalBookPagesCount) { <text>disabled</text> } btn btn-dark text-white " asp-action="Pages" asp-route-id="@Model.NextPageNumber">Next</a>
+                            <a class="page-link @if (Model.NextPageNumber < Model.BookPagesCount) { <text>disabled</text> } btn btn-dark text-white " asp-action="Pages" asp-route-id="@Model.NextPageNumber">Next</a>
                         </li>
                     </ul>
                 }

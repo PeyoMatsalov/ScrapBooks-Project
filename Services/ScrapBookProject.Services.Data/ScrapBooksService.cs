@@ -94,6 +94,7 @@
                 Name = scrapBookDbModel.Name,
                 Description = scrapBookDbModel.Description,
                 CoverUrl = scrapBookDbModel.CoverUlr,
+                CreatorId = userDbModel.Id,
                 CategoryId = scrapBookDbModel.CategoryId,
                 CreatorName = userDbModel.Email,
                 CategoryName = this.categoriesRepository.All().Where(x => x.Id == scrapBookDbModel.CategoryId).FirstOrDefault().Name,
