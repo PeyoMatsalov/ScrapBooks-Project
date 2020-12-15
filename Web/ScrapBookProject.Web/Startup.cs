@@ -70,6 +70,7 @@
             services.AddTransient<IPagesService, PagesService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IAdministrationSevice, AdministrationService>();
+            services.AddTransient<ICommentsService, CommentsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

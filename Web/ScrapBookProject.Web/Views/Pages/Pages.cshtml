@@ -25,11 +25,11 @@
                 else
                 {
                     <div class="container">
-                        <div class="row" style="height: 500px">
+                        <div class="row alert-dark" style="height: 500px">
                             @foreach (var page in Model.Pages)
                             {
                                 <div class="col">
-                                    @Html.Raw(page.PageNumber)
+                                    <strong>@Html.Raw(page.PageNumber)</strong>
                                     <hr>
                                     @Html.Raw(page.SanitizedContent)
 

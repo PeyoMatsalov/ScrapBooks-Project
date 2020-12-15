@@ -2,7 +2,46 @@
 @using System.Security.Claims
 @{
     var currentUserID = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+    void DisplayComments(int? parentId)
+    {
+        var comments = this.Model.Comments.Where(x => x.ParentId == parentId);
+        if (!comments.Any())
+        {
+            return;
+        }
+
+        @foreach (var comment in comments)
+        {
+            <div class="container-fluid mt-100">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <div class="media flex-wrap w-100 align-items-center">
+                                    <img src="https://img.icons8.com/cute-clipart/344/user-male.png" class="d-block ui-w-40 rounded-circle" width="60" alt="">
+                                    <div class="media-body ml-3">
+                                        @comment.OwnerName
+                                        <div class="text-muted small">
+                                            <time datetime="@comment.CreatedOn.ToString("O")"></time>
+                                        </div>
+                                    </div>
+                                    <div class="px-4 pt-3"> <button type="button" class="btn btn-secondary" onclick="showAddCommentForm(@comment.Id)">Reply</button> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <article>
+                                @Html.Raw(comment.SanitizedContent)
+                            </article>
+                            @{ DisplayComments(comment.Id); }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
 }
+
 
 <div class="card mb-4 ml-4 no-hover" style="max-width: 1100px;">
     <div class="row no-gutters">
@@ -57,3 +96,33 @@
         </div>
     </div>
 </div>
+
+<div class="px-4 pt-3 text-md-right">
+    <button type="button" class="btn btn-secondary" onclick="showAddCommentForm(0)">Comment</button>
+</div>
+@{ DisplayComments(null); }
+<div>
+    <form asp-controller="Comments" asp-action="Create" method="post" id="AddCommentForm" style="display: none">
+        <input type="hidden" name="ScrapBookId" value="@this.Model.Id" />
+        <input type="hidden" name="ParentId" value="0" />
+        <div>
+            <label for="Content"></label>
+            <textarea name="Content" id="Content" class="form-control"></textarea>
+        </div>
+        <div>
+            <input type="submit" class="btn btn-primary" value="Add comment" />
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <script>
+        function showAddCommentForm(parentId) {
+            $("#AddCommentForm input[name='ParentId']").val(parentId);
+            $("#AddCommentForm").show();
+            $([document.documentElement, document.body]).animate({
+                scrollTop: $("#AddCommentForm").offset().top
+            }, 1000);
+        }
+    </script>
+}

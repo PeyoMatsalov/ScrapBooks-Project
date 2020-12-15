@@ -6,6 +6,10 @@
     {
         public string Content { get; set; }
 
+        public int? ParentId { get; set; }
+
+        public virtual Comment Parent { get; set; }
+
         public int ScrapBookId { get; set; }
 
         public virtual ScrapBook ScrapBook { get; set; }

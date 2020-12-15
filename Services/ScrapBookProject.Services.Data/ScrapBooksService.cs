@@ -17,17 +17,20 @@
         private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
         private readonly IDeletableEntityRepository<Page> pagesRepository;
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
+        private readonly IDeletableEntityRepository<Comment> commentsRepository;
 
         public ScrapBooksService(
             IDeletableEntityRepository<ScrapBook> scrapBooksRepository,
             IDeletableEntityRepository<ApplicationUser> usersRepository,
             IDeletableEntityRepository<Page> pagesRepository,
-            IDeletableEntityRepository<Category> categoriesRepository)
+            IDeletableEntityRepository<Category> categoriesRepository,
+            IDeletableEntityRepository<Comment> commentsRepository)
         {
             this.scrapBooksRepository = scrapBooksRepository;
             this.usersRepository = usersRepository;
             this.pagesRepository = pagesRepository;
             this.categoriesRepository = categoriesRepository;
+            this.commentsRepository = commentsRepository;
         }
 
         public async Task CreateAsync(CreateScrapBookInputModel input, string userId)
@@ -101,6 +104,15 @@
                 Visibility = scrapBookDbModel.Visibility,
                 CreateTime = scrapBookDbModel.CreatedOn,
                 PagesCount = this.pagesRepository.All().Where(x => x.ScrapBookId == scrapBookId).Count(),
+                Comments = this.commentsRepository.All().Where(x => x.ScrapBookId == scrapBookId).
+                Select(c => new ScrapBookCommentViewModel
+                {
+                    Id = c.Id,
+                    OwnerName = this.usersRepository.All().FirstOrDefault(o => o.Id == c.OwnerId).UserName,
+                    Content = c.Content,
+                    CreatedOn = c.CreatedOn,
+                    ParentId = c.ParentId,
+                }).ToList(),
             };
 
             return viewModel;
