@@ -1,6 +1,7 @@
 ﻿namespace ScrapBookProject.Services.Data
 {
     using System.Collections.Generic;
+
     using ScrapBookProject.Data.Models;
     using ScrapBookProject.Web.ViewModels.Categories;
     using ScrapBookProject.Web.ViewModels.ScrapBooks;

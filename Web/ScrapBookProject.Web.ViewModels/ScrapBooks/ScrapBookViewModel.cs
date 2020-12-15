@@ -21,7 +21,7 @@
 
         public bool IsDeleted { get; set; }
 
-        public ICollection<ScrapBookCommentViewModel> Comments{ get; set; }
+        public ICollection<ScrapBookCommentViewModel> Comments { get; set; }
 
         public DateTime CreateTime{ get; set; }
 

@@ -1,8 +1,6 @@
 ﻿namespace ScrapBookProject.Data.Models
 {
-    using System;
     using System.Collections.Generic;
-    using System.Text;
 
     using ScrapBookProject.Data.Common.Models;
 

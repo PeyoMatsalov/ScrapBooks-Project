@@ -1,9 +1,5 @@
 ﻿namespace ScrapBookProject.Web.ViewModels.Comments
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
     public class CreateCommentInputModel
     {
         public int ScrapBookId { get; set; }

@@ -9,7 +9,6 @@
     using ScrapBookProject.Data.Models;
     using ScrapBookProject.Services.Data;
     using ScrapBookProject.Web.ViewModels.Categories;
-    using ScrapBookProject.Web.ViewModels.Pages;
     using ScrapBookProject.Web.ViewModels.ScrapBooks;
 
     [Authorize]
