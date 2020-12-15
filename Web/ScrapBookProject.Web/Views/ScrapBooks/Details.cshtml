@@ -12,10 +12,10 @@
 
         @foreach (var comment in comments)
         {
-            <div class="container-fluid mt-100">
+            <div class="container-fluid mt-100 pt-3">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="card mb-4">
+                    <div class="col-md-10">
+                        <div class="card mb-4 no-hover">
                             <div class="card-header">
                                 <div class="media flex-wrap w-100 align-items-center">
                                     <img src="https://img.icons8.com/cute-clipart/344/user-male.png" class="d-block ui-w-40 rounded-circle" width="60" alt="">
@@ -97,7 +97,7 @@
     </div>
 </div>
 
-<div class="px-4 pt-3 text-md-right">
+<div class="px-4 pb-1 text-md-right">
     <button type="button" class="btn btn-secondary" onclick="showAddCommentForm(0)">Comment</button>
 </div>
 @{ DisplayComments(null); }
