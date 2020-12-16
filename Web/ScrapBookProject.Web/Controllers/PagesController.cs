@@ -49,7 +49,7 @@
             int bookId = int.Parse(this.TempData["bookId"].ToString());
 
             await this.pagesService.CreateAsync(input, bookId);
-            return this.RedirectToAction("Pages");
+            return this.RedirectToAction(nameof(this.Pages));
         }
     }
 }

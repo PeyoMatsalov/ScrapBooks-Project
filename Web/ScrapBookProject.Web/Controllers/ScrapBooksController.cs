@@ -63,7 +63,7 @@
 
             await this.scrapBooksService.CreateAsync(input, userId);
 
-            return this.Redirect("/ScrapBooks/ScrapBooks");
+            return this.RedirectToAction(nameof(this.ScrapBooks));
         }
 
         [HttpPost]
@@ -109,7 +109,7 @@
             }
 
             await this.scrapBooksService.UpdateAsync(id, input);
-            return this.RedirectToAction("ScrapBooks");
+            return this.RedirectToAction(nameof(this.ScrapBooks));
         }
 
         public IActionResult Details(int id)
