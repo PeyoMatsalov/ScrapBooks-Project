@@ -16,7 +16,7 @@
             this.commentsRepository = commentsRepository;
         }
 
-        public async Task Create(int scrapbookId, string ownerId, string content, int? parentId = null)
+        public async Task CreateCommentAsync(int scrapbookId, string ownerId, string content, int? parentId = null)
         {
             var comment = new Comment
             {

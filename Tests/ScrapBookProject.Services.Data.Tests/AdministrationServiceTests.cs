@@ -41,12 +41,10 @@
             list.Add(category);
             var mockRepo = new Mock<IDeletableEntityRepository<Category>>();
             mockRepo.Setup(x => x.All()).Returns(list.AsQueryable);
-            mockRepo.Setup(x => x.AddAsync(It.IsAny<Category>())).Callback((Category category) => list.Add(category));
 
             var listSb = new List<ScrapBook>();
             var mockRepoSb = new Mock<IDeletableEntityRepository<ScrapBook>>();
             mockRepoSb.Setup(x => x.All()).Returns(listSb.AsQueryable);
-            mockRepoSb.Setup(x => x.AddAsync(It.IsAny<ScrapBook>())).Callback((ScrapBook scrapBook) => listSb.Add(scrapBook));
 
             var service = new AdministrationService(mockRepo.Object, mockRepoSb.Object);
 
@@ -67,12 +65,10 @@
             };
             var mockRepo = new Mock<IDeletableEntityRepository<Category>>();
             mockRepo.Setup(x => x.All()).Returns(list.AsQueryable);
-            mockRepo.Setup(x => x.AddAsync(It.IsAny<Category>())).Callback((Category category) => list.Add(category));
 
             var listSb = new List<ScrapBook>();
             var mockRepoSb = new Mock<IDeletableEntityRepository<ScrapBook>>();
             mockRepoSb.Setup(x => x.All()).Returns(listSb.AsQueryable);
-            mockRepoSb.Setup(x => x.AddAsync(It.IsAny<ScrapBook>())).Callback((ScrapBook scrapBook) => listSb.Add(scrapBook));
 
             var service = new AdministrationService(mockRepo.Object, mockRepoSb.Object);
 
@@ -92,12 +88,10 @@
 
             var mockRepo = new Mock<IDeletableEntityRepository<Category>>();
             mockRepo.Setup(x => x.All()).Returns(list.AsQueryable);
-            mockRepo.Setup(x => x.AddAsync(It.IsAny<Category>())).Callback((Category category) => list.Add(category));
 
             var listSb = new List<ScrapBook>();
             var mockRepoSb = new Mock<IDeletableEntityRepository<ScrapBook>>();
             mockRepoSb.Setup(x => x.All()).Returns(listSb.AsQueryable);
-            mockRepoSb.Setup(x => x.AddAsync(It.IsAny<ScrapBook>())).Callback((ScrapBook scrapBook) => listSb.Add(scrapBook));
 
             var service = new AdministrationService(mockRepo.Object, mockRepoSb.Object);
 

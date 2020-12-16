@@ -40,7 +40,7 @@
             }
 
             var ownerId = this.userManager.GetUserId(this.User);
-            await this.commentsService.Create(input.ScrapBookId, ownerId, input.Content, parentId);
+            await this.commentsService.CreateCommentAsync(input.ScrapBookId, ownerId, input.Content, parentId);
             return this.RedirectToAction("Details", "ScrapBooks", new { id = input.ScrapBookId });
         }
     }

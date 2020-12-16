@@ -10,12 +10,10 @@
 
     public class PagesService : IPagesService
     {
-        private readonly IDeletableEntityRepository<ScrapBook> scrapBooksRepository;
         private readonly IDeletableEntityRepository<Page> pagesRepository;
 
-        public PagesService(IDeletableEntityRepository<ScrapBook> scrapBooksRepository, IDeletableEntityRepository<Page> pagesRepository)
+        public PagesService(IDeletableEntityRepository<Page> pagesRepository)
         {
-            this.scrapBooksRepository = scrapBooksRepository;
             this.pagesRepository = pagesRepository;
         }
 

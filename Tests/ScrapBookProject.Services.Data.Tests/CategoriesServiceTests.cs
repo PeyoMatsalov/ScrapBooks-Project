@@ -25,12 +25,10 @@
             };
             var mockRepo = new Mock<IDeletableEntityRepository<Category>>();
             mockRepo.Setup(x => x.All()).Returns(list.AsQueryable);
-            mockRepo.Setup(x => x.AddAsync(It.IsAny<Category>())).Callback((Category category) => list.Add(category));
 
             var listSb = new List<ScrapBook>();
             var mockRepoSb = new Mock<IDeletableEntityRepository<ScrapBook>>();
             mockRepoSb.Setup(x => x.All()).Returns(listSb.AsQueryable);
-            mockRepoSb.Setup(x => x.AddAsync(It.IsAny<ScrapBook>())).Callback((ScrapBook scrapBook) => listSb.Add(scrapBook));
 
             var service = new CategoriesService(mockRepoSb.Object, mockRepo.Object);
 
@@ -45,7 +43,6 @@
             var list = new List<Category>();
             var mockRepo = new Mock<IDeletableEntityRepository<Category>>();
             mockRepo.Setup(x => x.All()).Returns(list.AsQueryable);
-            mockRepo.Setup(x => x.AddAsync(It.IsAny<Category>())).Callback((Category category) => list.Add(category));
 
             var listSb = new List<ScrapBook>
             {
@@ -56,7 +53,6 @@
             };
             var mockRepoSb = new Mock<IDeletableEntityRepository<ScrapBook>>();
             mockRepoSb.Setup(x => x.All()).Returns(listSb.AsQueryable);
-            mockRepoSb.Setup(x => x.AddAsync(It.IsAny<ScrapBook>())).Callback((ScrapBook scrapBook) => listSb.Add(scrapBook));
 
             var service = new CategoriesService(mockRepoSb.Object, mockRepo.Object);
 
@@ -93,26 +89,27 @@
         [Fact]
         public void GetScrapBooksByCategoryIdShouldReturnTheCorrectScrapBooks()
         {
-            var list = new List<Category>();
+            var list = new List<Category>()
+            {
+                new Category { Id = 1 },
+            };
             var mockRepo = new Mock<IDeletableEntityRepository<Category>>();
             mockRepo.Setup(x => x.All()).Returns(list.AsQueryable);
-            mockRepo.Setup(x => x.AddAsync(It.IsAny<Category>())).Callback((Category category) => list.Add(category));
 
             var listSb = new List<ScrapBook>
             {
-                new ScrapBook { Id = 1, Name = "Test", Visibility = "Public", CategoryId = 1 },
-                new ScrapBook { Id = 2, Name = "Test", Visibility = "Private", CategoryId = 3 },
-                new ScrapBook { Id = 3, Name = "Test", Visibility = "Private", CategoryId = 6 },
-                new ScrapBook { Id = 4, Name = "Test", Visibility = "Public", CategoryId = 1 },
-                new ScrapBook { Id = 3, Name = "Test", Visibility = "Private", CategoryId = 1 },
+                new ScrapBook { Id = 1, Name = "Test", Visibility = "Public", CategoryId = 1, Description = "Test", IsDeleted = false },
+                new ScrapBook { Id = 2, Name = "Test", Visibility = "Private", CategoryId = 3, Description = "Test", IsDeleted = false },
+                new ScrapBook { Id = 3, Name = "Test", Visibility = "Private", CategoryId = 6, Description = "Test", IsDeleted = false },
+                new ScrapBook { Id = 4, Name = "Test", Visibility = "Public", CategoryId = 1, Description = "Test", IsDeleted = false },
+                new ScrapBook { Id = 5, Name = "Test", Visibility = "Private", CategoryId = 1, Description = "Test", IsDeleted = false },
             };
             var mockRepoSb = new Mock<IDeletableEntityRepository<ScrapBook>>();
             mockRepoSb.Setup(x => x.All()).Returns(listSb.AsQueryable);
-            mockRepoSb.Setup(x => x.AddAsync(It.IsAny<ScrapBook>())).Callback((ScrapBook scrapBook) => listSb.Add(scrapBook));
 
             var service = new CategoriesService(mockRepoSb.Object, mockRepo.Object);
 
-            List<ScrapBookViewModel> resultList = service.GetScrapBooksByCategoryId(1).ToList();
+            var resultList = service.GetScrapBooksByCategoryId(1);
 
             Assert.Equal(3, resultList.Count());
         }

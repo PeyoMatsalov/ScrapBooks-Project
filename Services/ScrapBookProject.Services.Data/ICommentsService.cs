@@ -4,7 +4,7 @@
 
     public interface ICommentsService
     {
-        Task Create(int scrapBookId, string ownerId, string content, int? parentId = null);
+        Task CreateCommentAsync(int scrapBookId, string ownerId, string content, int? parentId = null);
 
         bool IsInScrapBookId(int commentId, int scrapBookId);
     }

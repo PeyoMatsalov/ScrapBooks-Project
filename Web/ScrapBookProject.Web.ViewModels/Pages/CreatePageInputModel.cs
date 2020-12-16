@@ -8,8 +8,6 @@
 
         public int PageNumber { get; set; }
 
-        public string ImageUrl { get; set; }
-
         [Required]
         [MaxLength(300)]
         public string Content { get; set; }
