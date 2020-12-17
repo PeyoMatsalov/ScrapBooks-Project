@@ -4,7 +4,6 @@
 
     public class HomeCategoryInfoViewModel
     {
-
         public string Categories { get; set; }
 
         public string SanitizedCategories => new HtmlSanitizer().Sanitize(this.Categories);

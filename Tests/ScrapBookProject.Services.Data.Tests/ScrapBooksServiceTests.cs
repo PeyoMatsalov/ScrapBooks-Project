@@ -146,7 +146,7 @@
         {
             var listCat = new List<Category>()
             {
-                new Category { Id = 1},
+                new Category { Id = 1 },
             };
             var mockRepoCat = new Mock<IDeletableEntityRepository<Category>>();
             mockRepoCat.Setup(x => x.All()).Returns(listCat.AsQueryable);
@@ -208,7 +208,7 @@
 
             var listSb = new List<ScrapBook>()
             {
-                new ScrapBook { Id = 1, CategoryId = 1, Name = "Test", Description = "Test", CoverUlr = "Test"},
+                new ScrapBook { Id = 1, CategoryId = 1, Name = "Test", Description = "Test", CoverUlr = "Test" },
             };
             var mockRepoSb = new Mock<IDeletableEntityRepository<ScrapBook>>();
             mockRepoSb.Setup(x => x.All()).Returns(listSb.AsQueryable);

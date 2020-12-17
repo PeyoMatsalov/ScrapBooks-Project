@@ -3,12 +3,8 @@
     using System.Collections.Generic;
     using System.Text;
 
-    using ScrapBookProject.Data.Common.Repositories;
-    using ScrapBookProject.Data.Models;
-
     public class StringService : IStringService
     {
-
         public StringService()
         {
         }

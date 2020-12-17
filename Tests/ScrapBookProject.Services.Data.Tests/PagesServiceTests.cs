@@ -50,7 +50,7 @@
         }
 
         [Fact]
-        public void GetPagesCountByBookIdShouldReturnTheCorrectResult ()
+        public void GetPagesCountByBookIdShouldReturnTheCorrectResult()
         {
             var list = new List<Page>
             {

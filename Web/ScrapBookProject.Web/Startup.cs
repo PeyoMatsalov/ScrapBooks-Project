@@ -1,7 +1,7 @@
 ﻿namespace ScrapBookProject.Web
 {
     using System.Reflection;
-    using Azure.Storage.Blobs;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;

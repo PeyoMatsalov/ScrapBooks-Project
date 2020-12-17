@@ -72,20 +72,20 @@
                     </div>
                 </div>
                 <hr>
-                <div class="row offset-2">
+                <div class="row offset-1">
                     <div class="container">
                         <div class="row">
-                            <div class="">
-                                <a class="btn btn-light m-3" asp-controller="Pages" asp-action="Pages">Read</a>
+                            <div class="col-4">
+                                <a class="btn btn-light m-3 " asp-controller="Pages" asp-action="Pages">Read</a>
                             </div>
                             @if (Model.CreatorId == currentUserID)
                             {
-                                <div class="">
+                                <div class="col-4">
                                     <a class="btn btn-info m-3" asp-controller="ScrapBooks" asp-action="Edit" asp-route-id="@Model.Id"> Edit </a>
                                 </div>
                                 <form id="deleteForm" method="post" asp-controller="ScrapBooks" asp-action="Delete" asp-route-Id="@Model.Id">
                                 </form>
-                                <div class="">
+                                <div class="col-4">
                                     <button class="btn btn-danger m-3" data-toggle="modal" data-target="#deleteModal" asp-controller="ScrapBooks" asp-action="Delete" asp-route-Id="@Model.Id" type="submit">Delete</button>
                                 </div>
                             }

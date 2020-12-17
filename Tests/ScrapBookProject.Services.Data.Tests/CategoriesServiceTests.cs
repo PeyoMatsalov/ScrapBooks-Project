@@ -1,15 +1,11 @@
 ﻿namespace ScrapBookProject.Services.Data.Tests
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     using Moq;
     using ScrapBookProject.Data.Common.Repositories;
     using ScrapBookProject.Data.Models;
-    using ScrapBookProject.Web.ViewModels.ScrapBooks;
     using Xunit;
 
     public class CategoriesServiceTests
@@ -30,7 +26,7 @@
             var mockRepoSb = new Mock<IDeletableEntityRepository<ScrapBook>>();
             mockRepoSb.Setup(x => x.All()).Returns(listSb.AsQueryable);
 
-            var service = new CategoriesService(mockRepoSb.Object, mockRepo.Object);
+            var service = new CategoriesService(mockRepoSb.Object, mockRepo.Object, new StringService());
 
             var resultList = service.GetAllCategories();
 
@@ -54,7 +50,7 @@
             var mockRepoSb = new Mock<IDeletableEntityRepository<ScrapBook>>();
             mockRepoSb.Setup(x => x.All()).Returns(listSb.AsQueryable);
 
-            var service = new CategoriesService(mockRepoSb.Object, mockRepo.Object);
+            var service = new CategoriesService(mockRepoSb.Object, mockRepo.Object, new StringService());
 
             var resultList = service.GetAllPublicScrapBooks();
 
@@ -79,7 +75,7 @@
             mockRepoSb.Setup(x => x.All()).Returns(listSb.AsQueryable);
             mockRepoSb.Setup(x => x.AddAsync(It.IsAny<ScrapBook>())).Callback((ScrapBook scrapBook) => listSb.Add(scrapBook));
 
-            var service = new CategoriesService(mockRepoSb.Object, mockRepo.Object);
+            var service = new CategoriesService(mockRepoSb.Object, mockRepo.Object, new StringService());
 
             var result = service.GetCategoryById(1);
 
@@ -107,7 +103,7 @@
             var mockRepoSb = new Mock<IDeletableEntityRepository<ScrapBook>>();
             mockRepoSb.Setup(x => x.All()).Returns(listSb.AsQueryable);
 
-            var service = new CategoriesService(mockRepoSb.Object, mockRepo.Object);
+            var service = new CategoriesService(mockRepoSb.Object, mockRepo.Object, new StringService());
 
             var resultList = service.GetScrapBooksByCategoryId(1);
 
