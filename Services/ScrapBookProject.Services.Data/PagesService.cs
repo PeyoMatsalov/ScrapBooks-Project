@@ -73,5 +73,10 @@
                     Content = x.Content,
                 });
         }
+
+        public int GetAllPagesCount()
+        {
+            return this.pagesRepository.All().Count();
+        }
     }
 }

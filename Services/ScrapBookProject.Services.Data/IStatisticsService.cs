@@ -4,6 +4,8 @@
 
     public interface IStatisticsService
     {
-        public SiteStatisticsViewModel GetRegisteredUserCountForPast3Months();
+        SiteStatisticsViewModel GetRegisteredUserCountForPast3Months();
+
+        int GetRegisteredUsersCount();
     }
 }

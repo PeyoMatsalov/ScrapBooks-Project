@@ -19,5 +19,7 @@
         Task DeleteScrapBookAsync(int scrapBookId);
 
         Task UpdateAsync(int id, EditScrapBookInputModel input);
+
+        int GetAllScrapBooksCount();
     }
 }

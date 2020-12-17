@@ -58,6 +58,11 @@
             await this.scrapBooksRepository.SaveChangesAsync();
         }
 
+        public int GetAllScrapBooksCount()
+        {
+            return this.scrapBooksRepository.All().Count();
+        }
+
         public ICollection<ScrapBookViewModel> GetAllScrapBooksForUser(string userId)
         {
             var scrapBooksDb = this.scrapBooksRepository.All().Where(x => x.CreatorId == userId).ToList();

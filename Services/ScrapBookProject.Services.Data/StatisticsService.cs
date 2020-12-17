@@ -46,5 +46,10 @@
 
             return result;
         }
+
+        public int GetRegisteredUsersCount()
+        {
+            return this.usersRepository.All().Count();
+        }
     }
 }

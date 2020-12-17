@@ -1,4 +1,5 @@
 ﻿@using ScrapBookProject.Common
+@model ScrapBookProject.Web.ViewModels.Home.HomeViewModel
 @{
     this.ViewData["Title"] = "Home Page";
     var cats = "\"Food\", \"Cooking\", \"Programming\", \"Sports\", \"Music\", \"Arts\", \"Arts\"";
@@ -7,9 +8,48 @@
 <div class="text-center">
     <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
 </div>
+<div class="container m-4">
+    <div class="row">
+        <div class="col-4 text-center">
+            <table class="table table-light table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th class="table-active" scope="col">We have</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.UsersCount Registered Users!</td>
+                    </tr>
+                    <tr>
+                        <td>@Model.CategoriesCount Different Categories!</td>
+                    </tr>
+                    <tr>
+                        <td>@Model.ScrapBooksCount Created ScrapBooks!</td>
+                    </tr>
+                    <tr>
+                        <td>@Model.PagesCount Written Pages!</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col text-center">
+            @if (!this.User.Identity.IsAuthenticated)
+            {
+                <h5 style="">It appears your not logged in. Click <a asp-area="Identity" asp-page="/Account/Register"> here </a> to register or <a asp-area="Identity" asp-page="/Account/Login">here</a> to login</h5>
+            }
+            else
+            {
 
-<div class="chart-container col">
-    <canvas id="myRadarChart"></canvas>
+            }
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="chart-container col text-center">
+            <h1 style="font-size: 22px">Check out our most popular categories!</h1>
+            <canvas id="myRadarChart"></canvas>
+        </div>
+    </div>
 </div>
 
 @section Scripts{

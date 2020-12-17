@@ -15,5 +15,7 @@
         int GetPagesCountByBookId(int bookId);
 
         IEnumerable<PageViewModel> GetCurrentPages(int bookId, int page, int pagesPerPage);
+
+        int GetAllPagesCount();
     }
 }
