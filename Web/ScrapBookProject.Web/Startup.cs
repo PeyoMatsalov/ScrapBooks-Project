@@ -73,7 +73,7 @@
             services.AddTransient<IAdministrationSevice, AdministrationService>();
             services.AddTransient<ICommentsService, CommentsService>();
             services.AddTransient<IStatisticsService, StatisticsService>();
-            services.AddSingleton(x => new BlobServiceClient(this.configuration.GetValue<string>("BlobConnectionKey")));
+            services.AddTransient<IStringService, StringService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

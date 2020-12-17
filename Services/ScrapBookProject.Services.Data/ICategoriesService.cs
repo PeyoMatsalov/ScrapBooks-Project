@@ -4,6 +4,7 @@
 
     using ScrapBookProject.Data.Models;
     using ScrapBookProject.Web.ViewModels.Categories;
+    using ScrapBookProject.Web.ViewModels.Home;
     using ScrapBookProject.Web.ViewModels.ScrapBooks;
 
     public interface ICategoriesService
@@ -15,5 +16,7 @@
         ICollection<ScrapBookViewModel> GetScrapBooksByCategoryId(int id);
 
         Category GetCategoryById(int id);
+
+        HomeCategoryInfoViewModel GetCategorySbsCountsOrdered();
     }
 }

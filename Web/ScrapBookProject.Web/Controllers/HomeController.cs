@@ -13,17 +13,20 @@
         private readonly IAdministrationSevice administrationSevice;
         private readonly IStatisticsService statisticsService;
         private readonly IScrapBooksService scrapBooksService;
+        private readonly ICategoriesService categoriesService;
 
         public HomeController(
             IPagesService pageService,
             IAdministrationSevice administrationSevice,
             IStatisticsService statisticsService,
-            IScrapBooksService scrapBooksService)
+            IScrapBooksService scrapBooksService,
+            ICategoriesService categoriesService)
         {
             this.pageService = pageService;
             this.administrationSevice = administrationSevice;
             this.statisticsService = statisticsService;
             this.scrapBooksService = scrapBooksService;
+            this.categoriesService = categoriesService;
         }
 
         public IActionResult Index()
@@ -34,6 +37,7 @@
                 CategoriesCount = this.administrationSevice.GetAllCategories().Count,
                 ScrapBooksCount = this.scrapBooksService.GetAllScrapBooksCount(),
                 PagesCount = this.pageService.GetAllPagesCount(),
+                CategoryInfo = this.categoriesService.GetCategorySbsCountsOrdered(),
             };
             return this.View(viewModel);
         }

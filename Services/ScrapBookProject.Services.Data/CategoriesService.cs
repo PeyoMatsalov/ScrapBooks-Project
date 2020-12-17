@@ -6,17 +6,23 @@
     using ScrapBookProject.Data.Common.Repositories;
     using ScrapBookProject.Data.Models;
     using ScrapBookProject.Web.ViewModels.Categories;
+    using ScrapBookProject.Web.ViewModels.Home;
     using ScrapBookProject.Web.ViewModels.ScrapBooks;
 
     public class CategoriesService : ICategoriesService
     {
         private readonly IDeletableEntityRepository<ScrapBook> scrapBooksRepository;
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
+        private readonly IStringService stringService;
 
-        public CategoriesService(IDeletableEntityRepository<ScrapBook> scrapBooksRepository, IDeletableEntityRepository<Category> categoriesRepository)
+        public CategoriesService(
+            IDeletableEntityRepository<ScrapBook> scrapBooksRepository,
+            IDeletableEntityRepository<Category> categoriesRepository,
+            IStringService stringService)
         {
             this.scrapBooksRepository = scrapBooksRepository;
             this.categoriesRepository = categoriesRepository;
+            this.stringService = stringService;
         }
 
         public ICollection<CategoryViewModel> GetAllCategories()
@@ -57,6 +63,37 @@
         public Category GetCategoryById(int id)
         {
             return this.categoriesRepository.All().FirstOrDefault(x => x.Id == id);
+        }
+
+        public HomeCategoryInfoViewModel GetCategorySbsCountsOrdered()
+        {
+            var categoryInfos = new List<CategoryInfo>();
+            foreach (var category in this.categoriesRepository.All())
+            {
+                CategoryInfo currCategory = new CategoryInfo
+                {
+                    Name = category.Name,
+                    ScrapBooksCount = this.scrapBooksRepository.All().Where(x => x.CategoryId == category.Id).Count(),
+                };
+                categoryInfos.Add(currCategory);
+            }
+
+            categoryInfos.OrderBy(x => x.Name);
+
+            var categoryNames = new List<string>();
+            var categoryData = new List<int>();
+
+            foreach (var category in categoryInfos)
+            {
+                categoryNames.Add(category.Name);
+                categoryData.Add(category.ScrapBooksCount);
+            }
+
+            return new HomeCategoryInfoViewModel
+            {
+                Categories = this.stringService.ConvertCollectionOfStringToStringForChartJS(categoryNames),
+                CategorieValues = this.stringService.ConvertCollectionOfIntToStringForChartJS(categoryData),
+            };
         }
 
         public ICollection<ScrapBookViewModel> GetScrapBooksByCategoryId(int categoryId)
