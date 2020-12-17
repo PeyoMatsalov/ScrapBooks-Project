@@ -1,6 +1,6 @@
 ﻿@model ScrapBookProject.Web.ViewModels.Administration.EditCategoryInputModel
 
-<form method="post">
+<form method="post" id="editForm">
     <div class="form-group">
         <label asp-for="Name"></label>
         <input asp-for="Name" class="form-control" />
@@ -11,8 +11,36 @@
         <input asp-for="ImgUrl" class="form-control" />
         <span asp-validation-for="ImgUrl" class="text-danger"></span>
     </div>
-        <input type="hidden" asp-for="Id"/>
-    <div class="form-group">
-        <input type="submit" class="btn btn-outline-primary btn-pill">
-    </div>
+    <input type="hidden" asp-for="Id" />
 </form>
+<div class="form-group">
+    <button type="submit" data-toggle="modal" data-target="#editModal" class="btn btn-outline-primary btn-pill">Save Changes</button>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm Edit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Do you confirm these changes?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No.</button>
+                <button type="button" class="btn btn-primary" onclick="editForm.submit()">Yes.</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $("#deleteButton").click(function () {
+            $("#deleteForm").submit();
+        });
+    </script>
+}

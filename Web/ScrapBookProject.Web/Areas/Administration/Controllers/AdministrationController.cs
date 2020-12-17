@@ -1,6 +1,5 @@
 ﻿namespace ScrapBookProject.Web.Areas.Administration.Controllers
 {
-    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -16,16 +15,22 @@
     {
         private readonly IAdministrationSevice administrationSevice;
         private readonly ICategoriesService categoriesService;
+        private readonly IStatisticsService statisticsService;
 
-        public AdministrationController(IAdministrationSevice administrationSevice, ICategoriesService categoriesService)
+        public AdministrationController(
+            IAdministrationSevice administrationSevice,
+            ICategoriesService categoriesService,
+            IStatisticsService statisticsService)
         {
             this.administrationSevice = administrationSevice;
             this.categoriesService = categoriesService;
+            this.statisticsService = statisticsService;
         }
 
         public IActionResult AdminPanel()
         {
-            return this.View();
+            var viewModel = this.statisticsService.GetRegisteredUserCountForPast3Months();
+            return this.View(viewModel);
         }
 
         public IActionResult ManageCategories()

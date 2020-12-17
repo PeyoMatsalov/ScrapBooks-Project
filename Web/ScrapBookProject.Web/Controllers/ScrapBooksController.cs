@@ -1,6 +1,7 @@
 ﻿namespace ScrapBookProject.Web.Controllers
 {
     using System.Linq;
+    using System.Text;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -8,6 +9,7 @@
     using Microsoft.AspNetCore.Mvc;
     using ScrapBookProject.Data.Models;
     using ScrapBookProject.Services.Data;
+    using ScrapBookProject.Services.Messaging;
     using ScrapBookProject.Web.ViewModels.Categories;
     using ScrapBookProject.Web.ViewModels.ScrapBooks;
 
@@ -16,15 +18,18 @@
     {
         private readonly IScrapBooksService scrapBooksService;
         private readonly ICategoriesService categoriesService;
+        private readonly IEmailSender emailSender;
         private readonly UserManager<ApplicationUser> userManager;
 
         public ScrapBooksController(
             UserManager<ApplicationUser> userManager,
             IScrapBooksService scrapBooksService,
-            ICategoriesService categoriesService)
+            ICategoriesService categoriesService,
+            IEmailSender emailSender)
         {
             this.scrapBooksService = scrapBooksService;
             this.categoriesService = categoriesService;
+            this.emailSender = emailSender;
             this.userManager = userManager;
         }
 
@@ -117,6 +122,20 @@
             this.TempData["bookId"] = id;
             var viewModel = this.scrapBooksService.GetScrapBookById(id);
             return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SendToEmail(int id)
+        {
+            var scrapBook = this.scrapBooksService.GetScrapBookById(id);
+            var html = new StringBuilder();
+            html.AppendLine($"<h1>{scrapBook.Name}</h1>");
+            html.AppendLine($"<h3>{scrapBook.CategoryName}</h3>");
+            html.AppendLine($"<h5>{scrapBook.Description}</h5>");
+
+            await this.emailSender.SendEmailAsync("BookSevice@books.com", "ScrapBooks", "peiomatsalov@gmail.com", scrapBook.Name, html.ToString());
+
+            return this.RedirectToAction(nameof(this.ScrapBooks));
         }
     }
 }

@@ -36,7 +36,6 @@
         {
             var category = this.categoriesRepository.All().FirstOrDefault(x => x.Id == categoryId);
             category.IsDeleted = true;
-            this.categoriesRepository.Update(category);
             await this.categoriesRepository.SaveChangesAsync();
         }
 

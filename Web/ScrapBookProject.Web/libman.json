@@ -29,6 +29,10 @@
       ]
     },
     {
+      "library": "chart.js@latest",
+      "destination": "wwwroot/lib/chartjs/"
+    },
+    {
       "library": "jquery-validation-unobtrusive@3.2.11",
       "destination": "wwwroot/lib/jquery-validation-unobtrusive/",
       "files": [

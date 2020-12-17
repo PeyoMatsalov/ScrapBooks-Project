@@ -6,3 +6,40 @@
 <div class="text-center">
     <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
 </div>
+
+<div class="chart-container col">
+    <canvas id="myRadarChart"></canvas>
+</div>
+
+@section Scripts{
+    <script>
+        var ctx = document.getElementById('myRadarChart').getContext('2d');
+        var myRadarChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ["Food", "Cooking", "Programming", "Sports", "Music", "Arts"],
+                datasets: [{
+                    label: "Category Popularity",
+                    data: [23, 30, 15, 9, 40, 33],
+                    backgroundColor: "rgba(255,0,0,0.3)",
+                    borderColor: [
+                        "rgba(255,99,132,1)"],
+                    borderWidth: 2,
+                    lineTension: 0.15
+                }]
+            },
+            options: {
+                scale: {
+                    gridLines: {
+                        circular: true
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    },
+                }
+            }
+        });
+        myRadarChart.canvas.parentNode.style.height = '700px';
+        myRadarChart.canvas.parentNode.style.width = '700px';
+    </script>
+}
