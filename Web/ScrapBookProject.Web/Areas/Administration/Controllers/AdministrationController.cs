@@ -71,14 +71,14 @@
         }
 
         [HttpPost]
-        public IActionResult EditCategory(EditCategoryInputModel input)
+        public IActionResult EditCategory(int id, EditCategoryInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View();
             }
 
-            this.administrationSevice.UpdateCategoryAsync(input);
+            this.administrationSevice.UpdateAsync(id, input);
             return this.RedirectToAction(nameof(this.ManageCategories));
         }
 

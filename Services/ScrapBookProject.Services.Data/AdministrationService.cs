@@ -1,6 +1,5 @@
 ﻿namespace ScrapBookProject.Services.Data
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -52,12 +51,13 @@
                 }).ToList();
         }
 
-        public async Task UpdateCategoryAsync(EditCategoryInputModel input)
+        public async Task UpdateAsync(int id, EditCategoryInputModel input)
         {
-            var category = this.categoriesRepository.All().FirstOrDefault(x => x.Id == input.Id);
+            var category = this.categoriesRepository.All().FirstOrDefault(x => x.Id == id);
             category.Name = input.Name;
             category.ImageUrl = input.ImgUrl;
-            await this.categoriesRepository.SaveChangesAsync();
+
+            await this.scrapBooksRepository.SaveChangesAsync();
         }
     }
 }
