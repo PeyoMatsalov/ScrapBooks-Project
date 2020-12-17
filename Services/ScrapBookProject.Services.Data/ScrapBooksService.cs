@@ -94,17 +94,6 @@
             var scrapBookDbModel = this.scrapBooksRepository.All().FirstOrDefault(x => x.Id == scrapBookId);
             var userDbModel = this.usersRepository.All().FirstOrDefault(x => x.Id == scrapBookDbModel.CreatorId);
 
-            var category = scrapBookDbModel.Category;
-
-            if (category == null)
-            {
-                category = new Category
-                {
-                    Id = 0,
-                    Name = "Deleted/Modified",
-                };
-            }
-
             var viewModel = new ScrapBookViewModel
             {
                 Id = scrapBookDbModel.Id,
@@ -112,9 +101,9 @@
                 Description = scrapBookDbModel.Description,
                 CoverUrl = scrapBookDbModel.CoverUlr,
                 CreatorId = userDbModel.Id,
-                CategoryId = category.Id,
+                CategoryId = scrapBookDbModel.CategoryId,
                 CreatorName = userDbModel.Email,
-                CategoryName = category.Name,
+                CategoryName = this.categoriesRepository.All().Where(x => x.Id == scrapBookDbModel.CategoryId).FirstOrDefault().Name,
                 Visibility = scrapBookDbModel.Visibility,
                 CreateTime = scrapBookDbModel.CreatedOn,
                 PagesCount = this.pagesRepository.All().Where(x => x.ScrapBookId == scrapBookId).Count(),
