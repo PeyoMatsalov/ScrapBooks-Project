@@ -1,6 +1,7 @@
 ﻿@using ScrapBookProject.Common
 @{
     this.ViewData["Title"] = "Home Page";
+    var cats = "\"Food\", \"Cooking\", \"Programming\", \"Sports\", \"Music\", \"Arts\", \"Arts\"";
 }
 
 <div class="text-center">
@@ -17,7 +18,7 @@
         var myRadarChart = new Chart(ctx, {
             type: 'radar',
             data: {
-                labels: ["Food", "Cooking", "Programming", "Sports", "Music", "Arts"],
+                labels: [@Html.Raw(cats)],
                 datasets: [{
                     label: "Category Popularity",
                     data: [23, 30, 15, 9, 40, 33],

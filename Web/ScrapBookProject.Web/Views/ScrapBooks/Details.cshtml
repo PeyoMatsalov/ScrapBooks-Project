@@ -88,9 +88,6 @@
                                 <div class="">
                                     <button class="btn btn-danger m-3" data-toggle="modal" data-target="#deleteModal" asp-controller="ScrapBooks" asp-action="Delete" asp-route-Id="@Model.Id" type="submit">Delete</button>
                                 </div>
-                                <form method="post" asp-action="SendToEmail" asp-route-id="@Model.Id">
-                                    <button class="btn btn-warning m-3">Mail it to me</button>
-                                </form>
                             }
                         </div>
                     </div>

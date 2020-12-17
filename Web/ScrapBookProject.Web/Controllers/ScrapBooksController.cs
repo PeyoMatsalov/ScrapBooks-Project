@@ -123,19 +123,5 @@
             var viewModel = this.scrapBooksService.GetScrapBookById(id);
             return this.View(viewModel);
         }
-
-        [HttpPost]
-        public async Task<IActionResult> SendToEmail(int id)
-        {
-            var scrapBook = this.scrapBooksService.GetScrapBookById(id);
-            var html = new StringBuilder();
-            html.AppendLine($"<h1>{scrapBook.Name}</h1>");
-            html.AppendLine($"<h3>{scrapBook.CategoryName}</h3>");
-            html.AppendLine($"<h5>{scrapBook.Description}</h5>");
-
-            await this.emailSender.SendEmailAsync("BookSevice@books.com", "ScrapBooks", "peiomatsalov@gmail.com", scrapBook.Name, html.ToString());
-
-            return this.RedirectToAction(nameof(this.ScrapBooks));
-        }
     }
 }

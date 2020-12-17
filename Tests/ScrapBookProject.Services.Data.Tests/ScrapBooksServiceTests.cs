@@ -144,7 +144,10 @@
         [Fact]
         public void GetScrapBookByIdShouldReturnCorrectResult()
         {
-            var listCat = new List<Category>();
+            var listCat = new List<Category>()
+            {
+                new Category { Id = 1},
+            };
             var mockRepoCat = new Mock<IDeletableEntityRepository<Category>>();
             mockRepoCat.Setup(x => x.All()).Returns(listCat.AsQueryable);
 
@@ -184,7 +187,6 @@
 
             Assert.Equal(expectedResult.Name, result.Name);
             Assert.Equal(expectedResult.Id, result.Id);
-            Assert.Equal(expectedResult.CategoryId, result.CategoryId);
             Assert.Equal(expectedResult.Description, result.Description);
             Assert.Equal(expectedResult.CreatorId, result.CreatorId);
         }

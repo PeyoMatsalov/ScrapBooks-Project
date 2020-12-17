@@ -95,7 +95,7 @@
 
             var service = new AdministrationService(mockRepo.Object, mockRepoSb.Object);
 
-            await service.UpdateCategoryAsync(updatedCategory);
+            await service.UpdateAsync( category.Id, updatedCategory);
 
             Assert.Equal("EditNameTest", list.First().Name);
             Assert.Equal("EditImgUrlTest", list.First().ImageUrl);
