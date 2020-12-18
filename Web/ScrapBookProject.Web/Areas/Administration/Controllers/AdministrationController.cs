@@ -1,5 +1,6 @@
 ﻿namespace ScrapBookProject.Web.Areas.Administration.Controllers
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -37,6 +38,18 @@
         {
             var categoriesViewModel = this.administrationSevice.GetAllCategories();
             return this.View(categoriesViewModel);
+        }
+
+        public IActionResult ManageUsers()
+        {
+            return this.View(this.administrationSevice.GetAllUsers());
+        }
+
+        [HttpGet]
+        public JsonResult GetSearchData(string searchBy, string searchValue)
+        {
+            var result = this.administrationSevice.GetUserInfo(searchBy, searchValue);
+            return this.Json(result);
         }
 
         public IActionResult CreateCategory()
@@ -88,6 +101,14 @@
             await this.administrationSevice.DeleteCategoryAsync(id);
 
             return this.RedirectToAction(nameof(this.ManageCategories));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            await this.administrationSevice.DeleteUserAsync(id);
+
+            return this.RedirectToAction(nameof(this.ManageUsers));
         }
     }
 }

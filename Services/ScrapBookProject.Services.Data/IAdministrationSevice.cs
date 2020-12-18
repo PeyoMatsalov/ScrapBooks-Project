@@ -14,5 +14,11 @@
         Task UpdateCategoryAsync(EditCategoryInputModel input);
 
         Task DeleteCategoryAsync(int categoryId);
+
+        ICollection<UserViewModel> GetUserInfo(string searchBy, string searchValue);
+
+        ICollection<UserViewModel> GetAllUsers();
+
+        Task DeleteUserAsync(string userId);
     }
 }
