@@ -243,5 +243,47 @@
             Assert.Equal(1, listSb.FirstOrDefault().CategoryId);
             Assert.Equal("Private", listSb.FirstOrDefault().Visibility);
         }
+
+        [Fact]
+        public void GetAllScrapBooksCountShouldWorkCorrectly()
+        {
+            var listCat = new List<Category>();
+            var mockRepoCat = new Mock<IDeletableEntityRepository<Category>>();
+            mockRepoCat.Setup(x => x.All()).Returns(listCat.AsQueryable);
+
+            var listPgs = new List<Page>();
+            var mockRepoPgs = new Mock<IDeletableEntityRepository<Page>>();
+            mockRepoPgs.Setup(x => x.All()).Returns(listPgs.AsQueryable);
+
+            var listCmnts = new List<Comment>();
+            var mockRepoCmnts = new Mock<IDeletableEntityRepository<Comment>>();
+            mockRepoCmnts.Setup(x => x.All()).Returns(listCmnts.AsQueryable);
+
+            var listSb = new List<ScrapBook>()
+            {
+                new ScrapBook{ Name = "test" },
+                new ScrapBook{ Name = "test1" },
+                new ScrapBook{ Name = "test2" },
+                new ScrapBook{ Name = "test3" },
+                new ScrapBook{ Name = "test4" },
+            };
+            var mockRepoSb = new Mock<IDeletableEntityRepository<ScrapBook>>();
+            mockRepoSb.Setup(x => x.All()).Returns(listSb.AsQueryable);
+
+            var listUser = new List<ApplicationUser>();
+            var mockRepoUser = new Mock<IDeletableEntityRepository<ApplicationUser>>();
+            mockRepoUser.Setup(x => x.All()).Returns(listUser.AsQueryable);
+
+            var service = new ScrapBooksService(
+                mockRepoSb.Object,
+                mockRepoUser.Object,
+                mockRepoPgs.Object,
+                mockRepoCat.Object,
+                mockRepoCmnts.Object);
+
+            var result = service.GetAllScrapBooksCount();
+
+            Assert.Equal(5, result);
+        }
     }
 }

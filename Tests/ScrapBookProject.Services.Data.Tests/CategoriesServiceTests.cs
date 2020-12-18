@@ -109,5 +109,38 @@
 
             Assert.Equal(3, resultList.Count());
         }
+
+        [Fact]
+        public void GetCategorySbsCountsOrderedShouldWorkCorrectly()
+        {
+            var list = new List<Category>()
+            {
+                new Category { Id = 1, Name = "Test", ImageUrl = "Test" },
+                new Category { Id = 2, Name = "Test2", ImageUrl = "Test" },
+                new Category { Id = 3, Name = "Test3", ImageUrl = "Test" },
+            };
+            var mockRepo = new Mock<IDeletableEntityRepository<Category>>();
+            mockRepo.Setup(x => x.All()).Returns(list.AsQueryable);
+
+            var listSb = new List<ScrapBook>()
+            {
+                new ScrapBook { Id = 1, Name = "Test", Visibility = "Public", CategoryId = 1, Description = "Test", IsDeleted = false },
+                new ScrapBook { Id = 2, Name = "Test2", Visibility = "Private", CategoryId = 2, Description = "Test", IsDeleted = false },
+                new ScrapBook { Id = 3, Name = "Test3", Visibility = "Private", CategoryId = 2, Description = "Test", IsDeleted = false },
+                new ScrapBook { Id = 4, Name = "Test4", Visibility = "Public", CategoryId = 1, Description = "Test", IsDeleted = false },
+                new ScrapBook { Id = 5, Name = "Test5", Visibility = "Private", CategoryId = 1, Description = "Test", IsDeleted = false },
+            };
+            var mockRepoSb = new Mock<IDeletableEntityRepository<ScrapBook>>();
+            mockRepoSb.Setup(x => x.All()).Returns(listSb.AsQueryable);
+
+            var service = new CategoriesService(mockRepoSb.Object, mockRepo.Object, new StringService());
+
+            var result = service.GetCategorySbsCountsOrdered();
+            var expectedCategoryString = "[\"Test\",\"Test2\",\"Test3\"]";
+            var expectedCategoryValueString = "[3,2,0]";
+
+            Assert.Equal(expectedCategoryString, result.Categories);
+            Assert.Equal(expectedCategoryValueString, result.CategorieValues);
+        }
     }
 }

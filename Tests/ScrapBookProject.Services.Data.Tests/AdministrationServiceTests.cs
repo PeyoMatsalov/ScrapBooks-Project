@@ -25,7 +25,11 @@
             mockRepoSb.Setup(x => x.All()).Returns(listSb.AsQueryable);
             mockRepoSb.Setup(x => x.AddAsync(It.IsAny<ScrapBook>())).Callback((ScrapBook scrapBook) => listSb.Add(scrapBook));
 
-            var service = new AdministrationService(mockRepo.Object, mockRepoSb.Object);
+            var listUser = new List<ApplicationUser>();
+            var mockRepoUser = new Mock<IDeletableEntityRepository<ApplicationUser>>();
+            mockRepoUser.Setup(x => x.All()).Returns(listUser.AsQueryable);
+
+            var service = new AdministrationService(mockRepo.Object, mockRepoSb.Object, mockRepoUser.Object);
             var category = new CreateCategoryInputModel { Name = "Test", ImgUrl = "Test" };
 
             await service.CreateCategoryAsync(category);
@@ -46,7 +50,11 @@
             var mockRepoSb = new Mock<IDeletableEntityRepository<ScrapBook>>();
             mockRepoSb.Setup(x => x.All()).Returns(listSb.AsQueryable);
 
-            var service = new AdministrationService(mockRepo.Object, mockRepoSb.Object);
+            var listUser = new List<ApplicationUser>();
+            var mockRepoUser = new Mock<IDeletableEntityRepository<ApplicationUser>>();
+            mockRepoUser.Setup(x => x.All()).Returns(listUser.AsQueryable);
+
+            var service = new AdministrationService(mockRepo.Object, mockRepoSb.Object, mockRepoUser.Object);
 
             await service.DeleteCategoryAsync(1);
 
@@ -70,7 +78,11 @@
             var mockRepoSb = new Mock<IDeletableEntityRepository<ScrapBook>>();
             mockRepoSb.Setup(x => x.All()).Returns(listSb.AsQueryable);
 
-            var service = new AdministrationService(mockRepo.Object, mockRepoSb.Object);
+            var listUser = new List<ApplicationUser>();
+            var mockRepoUser = new Mock<IDeletableEntityRepository<ApplicationUser>>();
+            mockRepoUser.Setup(x => x.All()).Returns(listUser.AsQueryable);
+
+            var service = new AdministrationService(mockRepo.Object, mockRepoSb.Object, mockRepoUser.Object);
 
             var resultList = service.GetAllCategories();
 
@@ -93,7 +105,11 @@
             var mockRepoSb = new Mock<IDeletableEntityRepository<ScrapBook>>();
             mockRepoSb.Setup(x => x.All()).Returns(listSb.AsQueryable);
 
-            var service = new AdministrationService(mockRepo.Object, mockRepoSb.Object);
+            var listUser = new List<ApplicationUser>();
+            var mockRepoUser = new Mock<IDeletableEntityRepository<ApplicationUser>>();
+            mockRepoUser.Setup(x => x.All()).Returns(listUser.AsQueryable);
+
+            var service = new AdministrationService(mockRepo.Object, mockRepoSb.Object, mockRepoUser.Object);
 
             await service.UpdateCategoryAsync(updatedCategory);
 

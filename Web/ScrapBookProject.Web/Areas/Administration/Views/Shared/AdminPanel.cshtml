@@ -1,4 +1,11 @@
 ﻿@model ScrapBookProject.Web.ViewModels.Administration.SiteStatisticsViewModel
+@using ScrapBookProject.Services.Data
+@inject ScrapBookProject.Services.Data.IStatisticsService service
+
+@{
+
+}
+
 
 <div class="card text-center no-hover">
     <div class="header">
@@ -70,27 +77,28 @@
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['November', 'December', 'Yellow', 'Green', 'Purple', 'Orange', "Pink"],
+                labels: ['15-25', '26-35', '36-45', '46-55', '56+'],
                 datasets: [{
-                    label: '# of Registerd Users Per Month',
-                    data: [12, 19, 3, 5, 2, 3, 69],
+                    label: 'User Age Demographic',
+                    data: [
+                        @service.GetUserCountInAgeRange(15, 25),
+                        @service.GetUserCountInAgeRange(26, 35),
+                        @service.GetUserCountInAgeRange(36, 45),
+                        @service.GetUserCountInAgeRange(46, 55),
+                        @service.GetUserCountInAgeRange(56, 150)],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(137, 229, 46, 0.2)',
+                        'rgba(129, 236, 242, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
                         'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(255, 159, 69, 0.2)'
                     ],
                     borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
+                        'rgba(137, 229, 46, 1)',
+                        'rgba(129, 236, 242, 1)',
                         'rgba(255, 206, 86, 1)',
                         'rgba(75, 192, 192, 1)',
                         'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(255, 159, 69, 1)'
                     ],
                     borderWidth: 1
                 }]

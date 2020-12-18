@@ -1,10 +1,8 @@
 ﻿namespace ScrapBookProject.Services.Data
 {
     using System;
-    using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
-    using System.Text;
 
     using ScrapBookProject.Data.Common.Repositories;
     using ScrapBookProject.Data.Models;
@@ -50,6 +48,11 @@
         public int GetRegisteredUsersCount()
         {
             return this.usersRepository.All().Count();
+        }
+
+        public int GetUserCountInAgeRange(int firstYears, int secondYears)
+        {
+            return this.usersRepository.All().Where(x => DateTime.UtcNow.Year - x.DateOfBirth.Year >= firstYears && DateTime.UtcNow.Year - x.DateOfBirth.Year <= secondYears).Count();
         }
     }
 }

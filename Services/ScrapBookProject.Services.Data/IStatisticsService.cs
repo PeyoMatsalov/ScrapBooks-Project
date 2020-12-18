@@ -7,5 +7,7 @@
         SiteStatisticsViewModel GetRegisteredUserCountForPast3Months();
 
         int GetRegisteredUsersCount();
+
+        int GetUserCountInAgeRange(int firstYears, int secondYears);
     }
 }
