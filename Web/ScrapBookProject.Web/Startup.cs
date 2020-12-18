@@ -18,7 +18,6 @@
     using ScrapBookProject.Data.Seeding;
     using ScrapBookProject.Services.Data;
     using ScrapBookProject.Services.Mapping;
-    using ScrapBookProject.Services.Messaging;
     using ScrapBookProject.Web.ViewModels;
 
     public class Startup
@@ -65,8 +64,6 @@
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
-            services.AddTransient<IEmailSender>(
-                serviceProvider => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
             services.AddTransient<IScrapBooksService, ScrapBooksService>();
             services.AddTransient<IPagesService, PagesService>();
             services.AddTransient<ICategoriesService, CategoriesService>();

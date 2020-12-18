@@ -1,7 +1,6 @@
 ﻿namespace ScrapBookProject.Web.Controllers
 {
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -9,7 +8,6 @@
     using Microsoft.AspNetCore.Mvc;
     using ScrapBookProject.Data.Models;
     using ScrapBookProject.Services.Data;
-    using ScrapBookProject.Services.Messaging;
     using ScrapBookProject.Web.ViewModels.Categories;
     using ScrapBookProject.Web.ViewModels.ScrapBooks;
 
@@ -18,18 +16,15 @@
     {
         private readonly IScrapBooksService scrapBooksService;
         private readonly ICategoriesService categoriesService;
-        private readonly IEmailSender emailSender;
         private readonly UserManager<ApplicationUser> userManager;
 
         public ScrapBooksController(
             UserManager<ApplicationUser> userManager,
             IScrapBooksService scrapBooksService,
-            ICategoriesService categoriesService,
-            IEmailSender emailSender)
+            ICategoriesService categoriesService)
         {
             this.scrapBooksService = scrapBooksService;
             this.categoriesService = categoriesService;
-            this.emailSender = emailSender;
             this.userManager = userManager;
         }
 
