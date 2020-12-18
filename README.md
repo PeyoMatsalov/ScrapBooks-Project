@@ -13,5 +13,5 @@ This is a website where users can create books/noteboots, add pages to them and 
 * Moment.js
 * Chart.js
 * TinyMCE
-* PhotoShop
+* Photoshop
 * Moq
