@@ -353,3 +353,4 @@ MigrationBackup/
 .ionide/
 Web/ScrapBookProject.Web/appsettings.Production.json
 Web/ScrapBookProject.Web/appsettings.json
+Web/ScrapBookProject.Web/appsettings.Development.json
