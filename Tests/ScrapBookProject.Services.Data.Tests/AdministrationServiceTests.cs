@@ -1,5 +1,6 @@
 ﻿namespace ScrapBookProject.Services.Data.Tests
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -115,6 +116,59 @@
 
             Assert.Equal("EditNameTest", list.First().Name);
             Assert.Equal("EditImgUrlTest", list.First().ImageUrl);
+        }
+
+        [Fact]
+        public async Task DeleteUserAsyncShouldWorkCorrectly()
+        {
+            var list = new List<Category>();
+            var mockRepo = new Mock<IDeletableEntityRepository<Category>>();
+            mockRepo.Setup(x => x.All()).Returns(list.AsQueryable);
+
+            var listSb = new List<ScrapBook>();
+            var mockRepoSb = new Mock<IDeletableEntityRepository<ScrapBook>>();
+            mockRepoSb.Setup(x => x.All()).Returns(listSb.AsQueryable);
+
+            var listUser = new List<ApplicationUser>()
+            {
+                new ApplicationUser { Id = "test123" },
+            };
+            var mockRepoUser = new Mock<IDeletableEntityRepository<ApplicationUser>>();
+            mockRepoUser.Setup(x => x.All()).Returns(listUser.AsQueryable);
+
+            var service = new AdministrationService(mockRepo.Object, mockRepoSb.Object, mockRepoUser.Object);
+
+            await service.DeleteUserAsync("test123");
+
+            Assert.True(listUser.FirstOrDefault(x => x.Id == "test123").IsDeleted);
+        }
+
+        [Fact]
+
+        public void GetAllUsersShouldReturnAllUsers()
+        {
+            var list = new List<Category>();
+            var mockRepo = new Mock<IDeletableEntityRepository<Category>>();
+            mockRepo.Setup(x => x.All()).Returns(list.AsQueryable);
+
+            var listSb = new List<ScrapBook>();
+            var mockRepoSb = new Mock<IDeletableEntityRepository<ScrapBook>>();
+            mockRepoSb.Setup(x => x.All()).Returns(listSb.AsQueryable);
+
+            var listUser = new List<ApplicationUser>()
+            {
+                new ApplicationUser { Id = "test1", UserName = "test1", CreatedOn = DateTime.UtcNow.AddMonths(-1) },
+                new ApplicationUser { Id = "test2", UserName = "test2", CreatedOn = DateTime.UtcNow.AddMonths(-2) },
+                new ApplicationUser { Id = "test3", UserName = "test3", CreatedOn = DateTime.UtcNow.AddMonths(-3) },
+            };
+            var mockRepoUser = new Mock<IDeletableEntityRepository<ApplicationUser>>();
+            mockRepoUser.Setup(x => x.All()).Returns(listUser.AsQueryable);
+
+            var service = new AdministrationService(mockRepo.Object, mockRepoSb.Object, mockRepoUser.Object);
+
+            var result = service.GetAllUsers();
+
+            Assert.Equal(3, result.Count());
         }
     }
 }
