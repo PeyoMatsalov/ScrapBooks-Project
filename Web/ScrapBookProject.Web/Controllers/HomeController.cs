@@ -34,7 +34,7 @@
             var viewModel = new HomeViewModel
             {
                 UsersCount = this.statisticsService.GetRegisteredUsersCount(),
-                CategoriesCount = this.administrationSevice.GetAllCategories().Count,
+                CategoriesCount = this.categoriesService.GetAllCategories().Count,
                 ScrapBooksCount = this.scrapBooksService.GetAllScrapBooksCount(),
                 PagesCount = this.pageService.GetAllPagesCount(),
                 CategoryInfo = this.categoriesService.GetCategorySbsCountsOrdered(),

@@ -40,7 +40,7 @@
         {
             var categories = this.categoriesService.GetAllCategories().Select(x => new CategoryDropdownViewModel
             {
-                Id = x.Id,
+                Id = x.CategoryId,
                 Name = x.Name,
             });
 
@@ -89,7 +89,7 @@
 
             viewModel.Categories = this.categoriesService.GetAllCategories().Select(x => new CategoryDropdownViewModel
             {
-                Id = x.Id,
+                Id = x.CategoryId,
                 Name = x.Name,
             });
             return this.View(viewModel);
@@ -102,7 +102,7 @@
             {
                 input.Categories = this.categoriesService.GetAllCategories().Select(x => new CategoryDropdownViewModel
                 {
-                    Id = x.Id,
+                    Id = x.CategoryId,
                     Name = x.Name,
                 });
                 return this.View(input);

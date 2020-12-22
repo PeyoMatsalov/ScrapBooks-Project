@@ -50,7 +50,7 @@
                             </li>
                         }
                         <li class="page-item  col-md-3">
-                            <a class="page-link @if (Model.NextPageNumber < Model.BookPagesCount) { <text>disabled</text> } btn btn-dark text-white " asp-action="Pages" asp-route-id="@Model.NextPageNumber">Next</a>
+                            <a class="page-link btn btn-dark text-white " asp-action="Pages" asp-route-id="@Model.NextPageNumber">Next</a>
                         </li>
                     </ul>
                 }

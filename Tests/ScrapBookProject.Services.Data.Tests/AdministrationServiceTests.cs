@@ -30,7 +30,7 @@
             var mockRepoUser = new Mock<IDeletableEntityRepository<ApplicationUser>>();
             mockRepoUser.Setup(x => x.All()).Returns(listUser.AsQueryable);
 
-            var service = new AdministrationService(mockRepo.Object, mockRepoSb.Object, mockRepoUser.Object);
+            var service = new CategoriesService(mockRepoSb.Object, mockRepo.Object, new StringService());
             var category = new CreateCategoryInputModel { Name = "Test", ImgUrl = "Test" };
 
             await service.CreateCategoryAsync(category);
@@ -55,7 +55,7 @@
             var mockRepoUser = new Mock<IDeletableEntityRepository<ApplicationUser>>();
             mockRepoUser.Setup(x => x.All()).Returns(listUser.AsQueryable);
 
-            var service = new AdministrationService(mockRepo.Object, mockRepoSb.Object, mockRepoUser.Object);
+            var service = new CategoriesService(mockRepoSb.Object, mockRepo.Object, new StringService());
 
             await service.DeleteCategoryAsync(1);
 
@@ -83,7 +83,7 @@
             var mockRepoUser = new Mock<IDeletableEntityRepository<ApplicationUser>>();
             mockRepoUser.Setup(x => x.All()).Returns(listUser.AsQueryable);
 
-            var service = new AdministrationService(mockRepo.Object, mockRepoSb.Object, mockRepoUser.Object);
+            var service = new CategoriesService(mockRepoSb.Object, mockRepo.Object, new StringService());
 
             var resultList = service.GetAllCategories();
 
@@ -110,7 +110,7 @@
             var mockRepoUser = new Mock<IDeletableEntityRepository<ApplicationUser>>();
             mockRepoUser.Setup(x => x.All()).Returns(listUser.AsQueryable);
 
-            var service = new AdministrationService(mockRepo.Object, mockRepoSb.Object, mockRepoUser.Object);
+            var service = new CategoriesService(mockRepoSb.Object, mockRepo.Object, new StringService());
 
             await service.UpdateCategoryAsync(updatedCategory);
 

@@ -36,7 +36,7 @@
 
         public IActionResult ManageCategories()
         {
-            var categoriesViewModel = this.administrationSevice.GetAllCategories();
+            var categoriesViewModel = this.categoriesService.GetAllCategories();
             return this.View(categoriesViewModel);
         }
 
@@ -65,7 +65,7 @@
                 return this.View();
             }
 
-            await this.administrationSevice.CreateCategoryAsync(input);
+            await this.categoriesService.CreateCategoryAsync(input);
 
             return this.RedirectToAction(nameof(this.ManageCategories));
         }
@@ -91,14 +91,14 @@
                 return this.View();
             }
 
-            this.administrationSevice.UpdateCategoryAsync(input);
+            this.categoriesService.UpdateCategoryAsync(input);
             return this.RedirectToAction(nameof(this.ManageCategories));
         }
 
         [HttpPost]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            await this.administrationSevice.DeleteCategoryAsync(id);
+            await this.categoriesService.DeleteCategoryAsync(id);
 
             return this.RedirectToAction(nameof(this.ManageCategories));
         }

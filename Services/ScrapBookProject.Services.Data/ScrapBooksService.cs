@@ -54,7 +54,6 @@
         {
             var book = this.scrapBooksRepository.All().FirstOrDefault(x => x.Id == scrapBookId);
             book.IsDeleted = true;
-            this.scrapBooksRepository.Update(book);
             await this.scrapBooksRepository.SaveChangesAsync();
         }
 

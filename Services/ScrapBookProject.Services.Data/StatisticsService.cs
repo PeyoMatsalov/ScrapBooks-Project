@@ -52,7 +52,9 @@
 
         public int GetUserCountInAgeRange(int firstYears, int secondYears)
         {
-            return this.usersRepository.All().Where(x => DateTime.UtcNow.Year - x.DateOfBirth.Year >= firstYears && DateTime.UtcNow.Year - x.DateOfBirth.Year <= secondYears).Count();
+            return this.usersRepository.All()
+                .Where(x => DateTime.UtcNow.Year - x.DateOfBirth.Year >= firstYears && DateTime.UtcNow.Year - x.DateOfBirth.Year <= secondYears)
+                .Count();
         }
     }
 }

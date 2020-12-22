@@ -7,14 +7,6 @@
 
     public interface IAdministrationSevice
     {
-        Task CreateCategoryAsync(CreateCategoryInputModel input);
-
-        ICollection<ManageCategoriesViewModel> GetAllCategories();
-
-        Task UpdateCategoryAsync(EditCategoryInputModel input);
-
-        Task DeleteCategoryAsync(int categoryId);
-
         ICollection<UserViewModel> GetUserInfo(string searchBy, string searchValue);
 
         ICollection<UserViewModel> GetAllUsers();
