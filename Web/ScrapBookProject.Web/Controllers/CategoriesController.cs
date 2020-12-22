@@ -16,7 +16,7 @@
 
         public IActionResult Categories()
         {
-            return this.View(this.categoriesService.GetAllCategories());
+            return this.View(this.categoriesService.GetAllCategoryNamesAndBooksCount());
         }
 
         public IActionResult Category(int id)
